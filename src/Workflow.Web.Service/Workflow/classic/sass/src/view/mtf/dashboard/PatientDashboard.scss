@@ -1,0 +1,47 @@
+// COLOR PALETTE
+
+$exec-dark-background: #3e4752;
+$exec-light-background: #ececec;
+$exec-tile-background: #ffffff;
+
+$exec-blue-color: #2e6eaf;
+$exec-red-color: #f1495b;
+$exec-green-color: #11c897;
+$exec-light-blue-color: saturate(lighten($exec-blue-color, 53%), 70%);
+
+$exec-font-light-color: #a0a7b8;
+$exec-font-color: #878ea2;
+$exec-font-dark-color: $exec-dark-background;
+
+//Proxima Nova is preferred font, but it is not a free font.
+$exec-font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$exec-font-size-small-content: 10px;
+$exec-font-size-content: 12px;
+$exec-font-size-small-title: 14px;
+$exec-font-size-medium-title: 18px;
+$exec-font-size-large-title: 20px;
+$exec-font-size-xlarge-title: 28px;
+
+$exec-font-regular: 400;
+$exec-font-semibold: 500;
+$exec-font-bold: 800;
+
+@include extjs-panel-ui(
+    $ui: 'ng-grid-dashboard',
+    $ui-header-color: #fff,
+/*#42719a*/
+    $ui-header-glyph-color: #fff,
+    $ui-header-glyph-opacity: 1,
+    $ui-header-font-size: 16px,
+    $ui-header-line-height: 24px,
+    $ui-header-font-weight: bold,
+    $ui-header-icon-height: 24px,
+    $ui-header-icon-width: 24px,
+    $ui-header-icon-spacing: 15px,
+    $ui-header-background-color: #477aa6,
+    $ui-header-padding: 2px 8px 2px 8px,
+    $ui-header-text-padding: 2px,
+    $ui-header-text-margin: 2px,
+    $ui-header-noborder-adjust: false
+);

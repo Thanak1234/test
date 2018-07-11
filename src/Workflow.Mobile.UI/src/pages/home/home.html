@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle icon-only>
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title>Dashboard</ion-title>
+    </ion-navbar>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="tab">
+            <ion-segment-button value="worklist" (ionSelect)="selectedWorklist()">
+                Worklist
+            </ion-segment-button>
+            <ion-segment-button value="contributed" (ionSelect)="selectedContributed()">
+                Contributed
+            </ion-segment-button>
+            <ion-segment-button value="submitted" (ionSelect)="selectedSubmitted()">
+                Submitted
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar [(ngModel)]="searchQuery"
+          [showCancelButton]="shouldShowCancel"
+          (ionInput)="onSearching($event)"
+          (ionCancel)="onSearchCancel($event)">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+<ion-content color="primary">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown"
+                               pullingText="Pull to refresh"
+                               refreshingSpinner="circles"
+                               refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div [ngSwitch]="tab">
+
+        <!-- worklist page -->
+        <div *ngSwitchCase="'worklist'">
+            <ion-card *ngFor="let item of worklists">
+                <ion-item (click)="openNavDetailsPage(item)" style="border-top: 3px solid gold">
+                    <ion-badge item-right [ngStyle]="renderer(item)">{{item.Status}}</ion-badge>
+                    <h3>{{item.Folio}}</h3>
+                    <p>Requestor: {{item.Requestor}}, Activity: {{item.ActivityName}}</p>
+                </ion-item>
+                <ion-row>
+                    <ion-col>
+                        <button [disabled]="item.Actions.length == 0" ion-button icon-left clear small (click)="presentAction($event, item)">
+                            <ion-icon name="cog"></ion-icon>
+                            <div>Actions</div>
+                        </button>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button icon-left clear small (click)="presentMore(item)">
+                            <ion-icon name="settings"></ion-icon>
+                            <div>More</div>
+                        </button>
+                    </ion-col>
+                    <ion-col center text-center>
+                        <ion-note>
+                            {{item.StartDate | date: 'dd/MM/yyyy'}}
+                        </ion-note>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </div>
+
+        <!-- contribute page -->
+        <div *ngSwitchCase="'contributed'">
+            <ion-list>
+                <ion-item-sliding *ngFor="let item of contributes" class="list-item">
+                    <ion-item (click)="openNavDetailsPage(item)">
+                        <h2>{{item.folio}}</h2>
+                        <p>Requestor: {{item.requestor}}, Last Activity: {{item.lastActivity}}</p>
+                    </ion-item>
+                    <ion-item-options>
+                        <button ion-button (click)="openViewFlow(item)" color="secondary" icon-left>
+                            <ion-icon name="git-network"></ion-icon>
+                            View Flow
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="loadContributed($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+
+        <!-- submitted page -->
+        <div *ngSwitchCase="'submitted'">
+            <ion-list>
+                <ion-item-sliding *ngFor="let item of submitteds" class="list-item">
+                    <ion-item (click)="openNavDetailsPage(item)">
+                        <h2>{{item.folio}}</h2>
+                        <p>Requestor: {{item.requestor}}, Last Activity: {{item.lastActivity}}</p>
+                    </ion-item>
+                    <ion-item-options>
+                        <button ion-button (click)="openViewFlow(item)" color="secondary" icon-left>
+                            <ion-icon name="git-network"></ion-icon>
+                            View Flow
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="loadSubmitted($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+
+    </div>
+</ion-content>

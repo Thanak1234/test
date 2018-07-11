@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Workflow.DataObject.Ticket
+{
+    public class GroupPolicyAssignTeamListDto
+    {
+        public int id { get; set; }
+        public int teamId { get; set; }
+    }
+}

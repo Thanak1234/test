@@ -1,0 +1,86 @@
+﻿@model SourceCode.Workflow.Management.ErrorLogs
+<HTML>
+<HEAD>
+    <TITLE>K2 Error Notification</TITLE>
+    <STYLE type="text/css">
+        BODY {
+            font-family: arial;
+            font-size: 10pt;
+            color: #000000;
+        }
+
+        H1 {
+            font-family: Verdana, times new roman;
+            font-size: 14pt;
+            color: #CC3300;
+        }
+
+        TD {
+            font-family: arial;
+            font-size: 10pt;
+            color: #000000;
+        }
+
+            TD.header {
+                font-family: arial;
+                font-size: 10pt;
+                font-weight: bold;
+                color: #FFFFFF;
+                background-color: #000000;
+            }
+
+        bgcolor {
+            background-color: #C0C0C0;
+        }
+    </STYLE>
+</HEAD>
+<BODY>
+    <H1>K2 Process Error Report</H1>
+    <p>The following K2 processes are currently in an error state:</p>
+    <TABLE BORDER="0" cellspacing="2" cellpadding="8">
+        <TR>
+            <TD class="header">ID</TD>
+            <TD class="header">Proc Inst ID</TD>
+            <TD class="header">Process Name</TD>
+            <TD class="header">Folio</TD>
+            <TD class="header">Source</TD>
+            <TD class="header">Description</TD>
+            <TD class="header">Error Log Date</TD>
+            <TD class="header">Started</TD>
+            <TD class="header">Originator</TD>
+            <TD class="header">Related Tasks</TD>
+        </TR>
+        @for (int i = 0; i < Model.Count; i++) {
+        <TR>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].ID
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].ProcInstID
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].ProcessName
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].Folio
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].ErrorItemName
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].Description
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].ErrorDate
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].StartDate
+            </TD>
+            <TD style="background-color: #C0C0C0">
+                @Model[i].ProcInstID
+            </TD>
+        </TR>
+        }
+    </TABLE>
+</BODY>
+</HTML>

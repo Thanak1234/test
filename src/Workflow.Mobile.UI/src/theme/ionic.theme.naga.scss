@@ -1,0 +1,68 @@
+
+@import "ionic.globals";
+
+$colors: (
+
+  primary:    #404040,
+  secondary:  #32db64,
+  danger:     #d91e18,
+  light:      #f4f4f4,
+  dark:       #222,
+  gold:       #ffd777
+
+) !default;
+
+
+$text-color:                 #404040 !default;
+$link-color:                 color($colors, primary) !default;
+$background-color:           #FFF !default;
+$subdued-text-color:         #FFF !default;
+
+$font-family-base:           "Segoe UI Semibold", "HelveticaNeue-Medium", "Helvetica", "sans-serif" !default;
+$font-size-base:             11px !default; // 1.4rem == 14px
+
+$content-padding:            5px !default;
+$content-margin:             5px !default;
+
+$toolbar-background:         #ffd777 !default;
+$toolbar-border-color:       #404040 !default;
+$toolbar-text-color:         $text-color !default;
+$toolbar-active-color:       $link-color !default;
+$toolbar-inactive-color:     #8c8c8c !default;
+
+$tabs-background:            #ffd777 !default;
+$tabs-border-color:          #404040 !default;
+$tabs-tab-color-inactive:    #8c8c8c !default;
+$tabs-tab-color-active:      $link-color !default;
+
+$list-text-color:            $text-color !default;
+$list-background-color:      #FFF !default;
+$list-border-color:          #404040 !default;
+
+$card-ios-margin-bottom:	10px;	
+$card-ios-margin-left:	10px;	
+$card-ios-margin-right:	10px;	
+$card-ios-margin-top:	10px;
+
+$card-ios-margin-bottom:	10px;	
+$card-ios-margin-left:	10px;	
+$card-ios-margin-right:	10px;	
+$card-ios-margin-top:	10px;
+
+$card-md-margin-bottom:	10px;	
+$card-md-margin-left:	10px;	
+$card-md-margin-right:	10px;	
+$card-md-margin-top:	5px;
+
+$card-wp-margin-bottom:	10px;	
+$card-wp-margin-left:	10px;	
+$card-wp-margin-right:	10px;	
+$card-wp-margin-top:	10px;
+
+// $card-md-box-shadow: 0 2px 2px 0 #ffd777, 0 3px 1px -2px #ffd777, 0 1px 5px 0 #ffd777;
+// $card-ios-box-shadow: 0 2px 2px 0 #ffd777, 0 3px 1px -2px #ffd777, 0 1px 5px 0 #ffd777;
+// $card-wp-box-shadow: 0 2px 2px 0 #ffd777, 0 3px 1px -2px #ffd777, 0 1px 5px 0 #ffd777;
+
+$card-md-border-radius: 0px;
+$card-ios-border-radius: 0px;
+$card-wp-border-radius: 0px;

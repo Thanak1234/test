@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{442182E7-AEF7-4E6B-8858-B1CE8035C2BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Workflow.Business.Ticketing</RootNamespace>
+    <AssemblyName>Workflow.Business.Ticketing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Handlebars, Version=1.0.0.0, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Handlebars.Net.1.7.1\lib\Handlebars.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dto\AbstractNotifyData.cs" />
+    <Compile Include="Dto\AbstractTicketParam.cs" />
+    <Compile Include="Dto\ActivityConfig.cs" />
+    <Compile Include="Dto\AssignedTicketParams.cs" />
+    <Compile Include="Dto\ChangeStatusActParams.cs" />
+    <Compile Include="Dto\DefaultNotifyData.cs" />
+    <Compile Include="Dto\MergedTicketActParam.cs" />
+    <Compile Include="Dto\PostReplyTicketParams.cs" />
+    <Compile Include="Dto\SimpleActParams.cs" />
+    <Compile Include="Dto\TicketActivityParam.cs" />
+    <Compile Include="Dto\TicketHeaderParam.cs" />
+    <Compile Include="Dto\TicketMetaParam.cs" />
+    <Compile Include="Dto\DestUser.cs" />
+    <Compile Include="FillMoreActData.cs" />
+    <Compile Include="IActivityMessageHandler.cs" />
+    <Compile Include="IActvityIdentifier.cs" />
+    <Compile Include="IDataProcessingProvider.cs" />
+    <Compile Include="Dto\NotificationParam.cs" />
+    <Compile Include="Dto\NotificationUserData.cs" />
+    <Compile Include="Dto\TicketParams.cs" />
+    <Compile Include="IFillMoreActData.cs" />
+    <Compile Include="ILoadTicketData.cs" />
+    <Compile Include="IMessageSource.cs" />
+    <Compile Include="Impl\AbstractTicketActivityHandler.cs" />
+    <Compile Include="Impl\AssignTicketActivityHandler.cs" />
+    <Compile Include="Impl\ChangeStatusActivityHandler.cs" />
+    <Compile Include="Impl\DataFill\AbstractActivityDataFill.cs" />
+    <Compile Include="Impl\DataFill\IActivityDataFill.cs" />
+    <Compile Include="Impl\DataFill\PostReplyActivityDataFill.cs" />
+    <Compile Include="Impl\DataFill\TicketAssignmentActivityDataFill.cs" />
+    <Compile Include="Impl\DataFill\TicketCreationActivityDataFill.cs" />
+    <Compile Include="Impl\DataFill\TicketStatusActivityDataFill.cs" />
+    <Compile Include="Impl\K2IntegratedActivityHander.cs" />
+    <Compile Include="Impl\PostInternalNoteActivityHandler.cs" />
+    <Compile Include="Impl\PostPublicNoteActivityHandler.cs" />
+    <Compile Include="Impl\PostReplyActivityHandler.cs" />
+    <Compile Include="Impl\RemoveTicketActivityHandler.cs" />
+    <Compile Include="Impl\SubTicketActivityHandler.cs" />
+    <Compile Include="Impl\TicketActivityFactoryImpl.cs" />
+    <Compile Include="Impl\TicketActivityHandler.cs" />
+    <Compile Include="Dto\NotificationData.cs" />
+    <Compile Include="Dto\RoutingDestinationData.cs" />
+    <Compile Include="Impl\TicketMergedActivityHandler.cs" />
+    <Compile Include="INotificationProvider.cs" />
+    <Compile Include="ITicketActivityHandler.cs" />
+    <Compile Include="ITicketActivityFactory.cs" />
+    <Compile Include="ITicketHandler.cs" />
+    <Compile Include="ITicketNotifyHandler.cs" />
+    <Compile Include="ITicketRoutingProvider.cs" />
+    <Compile Include="LoadTicketData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Workflow.Domain\Workflow.Domain.csproj">
+      <Project>{a2841867-8d8a-419a-80bb-d3dee9864a3b}</Project>
+      <Name>Workflow.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

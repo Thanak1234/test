@@ -1,0 +1,17 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Semi-Automated",
+    "label": "Semi-Automated - requires minimal intervention of change implementer or stakeholders to compensate for data loss."
+  },
+  {
+    "id": 2,
+    "name": "Fully-Automated",
+    "label": "Fully-Automated - full restoration without manual intervention to original state with no data loss."
+  },
+  {
+    "id": 3,
+    "name": "None-Automated",
+    "label": "None-Automated - requires manual intervention of change implementer or stakeholders to compensate for data loss."
+  }
+]

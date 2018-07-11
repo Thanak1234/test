@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Workflow.Scheduler.Cores {
+    public class Property {
+        public Property(string name, object value) {
+            Name = name;
+            TypeName = value == null ? null : value.GetType().Name;
+            Value = value == null ? null : value.ToString();
+        }
+
+        public string Name { get; private set; }
+
+        public string TypeName { get; private set; }
+
+        public string Value { get; private set; }
+    }
+}

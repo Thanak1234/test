@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "K2 Workflow";
+    Layout = null;
+    string UI_RESOURCE_PATH = ViewBag.UI_RESOURCE_PATH;
+    string JS_UI_RESOURCE_PATH = "";
+}
+
+<!DOCTYPE HTML>
+<html manifest="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="">
+    <link rel='shortcut icon' href='favicon.ico' />
+    <title>Nagaworld</title>
+
+    <!-- Preview Workflow -->
+    <script src="@UI_RESOURCE_PATH/resources/scripts/raphael.min.js"></script>
+    <script src="@UI_RESOURCE_PATH/resources/scripts/RaphaelIcons.js"></script>
+    <script src="@UI_RESOURCE_PATH/resources/scripts/jspdf.min.js"></script>
+    <script src="@UI_RESOURCE_PATH/resources/scripts/raphael.export.js"></script>
+    <script src="@UI_RESOURCE_PATH/resources/scripts/canvg.min.js"></script>
+    <!-- Preview Workflow -->
+
+    <script type="text/javascript">
+        var Ext = Ext || {}; // Ext namespace won't be defined yet...
+         @{
+            if(!string.IsNullOrEmpty(@UI_RESOURCE_PATH)){
+                JS_UI_RESOURCE_PATH = UI_RESOURCE_PATH.Replace("/","") + "/";
+            }
+        }
+        var UI_RESOURCE_PATH = "@JS_UI_RESOURCE_PATH";
+        // This function is called by the Microloader after it has performed basic
+        // device detection. The results are provided in the "tags" object. You can
+        // use these tags here or even add custom tags. These can be used by platform
+        // filters in your manifest or by platformConfig expressions in your app.
+        //
+        Ext.beforeLoad = function (tags) {
+            var s = location.search,  // the query string (ex "?foo=1&bar")
+                profile;
+
+            // For testing look for "?classic" or "?modern" in the URL to override
+            // device detection default.
+            //
+            if (s.match(/\bclassic\b/)) {
+                profile = 'classic';
+            }
+            else if (s.match(/\bmodern\b/)) {                
+                profile = 'classic';
+            }
+            else {
+                if (!tags.desktop) {
+                    profile = 'classic';
+                    if (!s.match(/\bmobile\b/)) {                        
+                        location.href = '/mobile';
+                    }
+                } else {                    
+                    profile = 'classic';
+                }
+                //profile = tags.phone ? 'modern' : 'classic';
+            }
+            
+            Ext.manifest = '@UI_RESOURCE_PATH/' + profile; // this name must match a build profile name
+
+            // This function is called once the manifest is available but before
+            // any data is pulled from it.
+            //
+            //return function (manifest) {
+                // peek at / modify the manifest object
+            //};
+        };
+    </script>
+
+
+    <!-- The line below must be kept intact for Sencha Cmd to build your application -->
+    <script id="microloader" data-app="b2f9847f-0835-4ab9-9358-4599d233f3b0" type="text/javascript" src="@UI_RESOURCE_PATH/bootstrap.js"></script>
+    <link href="@UI_RESOURCE_PATH/resources/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body style="background-color: #404040;">
+    <div id="splash">
+        <img src="../../@UI_RESOURCE_PATH/resources/images/nagaworld.png" alt="Nagaworld" width="145">
+        <div id="loading-child">
+            <div class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+            <div id="loading-indicator">Loading Business Automation Form. Please wait...</div>
+        </div>
+    </div>
+
+    <!--Reference the jQuery library. -->
+    <script type="text/javascript" src="@UI_RESOURCE_PATH/resources/scripts/jquery-1.6.4.min.js"></script>
+    <!--Reference the SignalR library. -->
+    <script type="text/javascript" src="@UI_RESOURCE_PATH/resources/scripts/jquery.signalR-2.2.1.js"></script>
+    <script type="text/javascript" src="/signalr/hubs"></script>
+    <script type="text/javascript" src="@UI_RESOURCE_PATH/resources/scripts/signalr-hub-client.js"></script>
+    <script type="text/javascript" src="@UI_RESOURCE_PATH/resources/scripts/responsivevoice.js"></script>
+</body>
+</html>

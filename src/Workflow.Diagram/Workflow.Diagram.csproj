@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
+  <!--Project was exported from assembly: C:\Users\imsopheap.NAGAWORLD\Desktop\Workflow.Diagram.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{411DF289-FC6D-4659-8A88-4BF414B10A6D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Workflow.Diagram</AssemblyName>
+    <RootNamespace>Workflow.Diagram</RootNamespace>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>3.4110.1.0</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activities.cs" />
+    <Compile Include="Activity.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="Events.cs" />
+    <Compile Include="Line.cs" />
+    <Compile Include="H1Line.cs" />
+    <Compile Include="H2Line.cs" />
+    <Compile Include="H3Line.cs" />
+    <Compile Include="LabelHV.cs" />
+    <Compile Include="Label.cs" />
+    <Compile Include="DragType.cs" />
+    <Compile Include="LineType.cs" />
+    <Compile Include="Lines.cs" />
+    <Compile Include="RectShadow.cs" />
+    <Compile Include="V1Line.cs" />
+    <Compile Include="V2Line.cs" />
+    <Compile Include="V3Line.cs" />
+    <Compile Include="ViewControl.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="views\ActivityView.cs" />
+    <Compile Include="views\EventView.cs" />
+    <Compile Include="views\LabelView.cs" />
+    <Compile Include="views\LineView.cs" />
+    <Compile Include="views\PointView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\activity.ico" />
+    <EmbeddedResource Include="Icons\activity_active.ico" />
+    <EmbeddedResource Include="Icons\activity_complete.ico" />
+    <EmbeddedResource Include="Icons\activity_error.ico" />
+    <EmbeddedResource Include="Icons\activity_expire.ico" />
+    <EmbeddedResource Include="Icons\activity_waiting.ico" />
+    <EmbeddedResource Include="Icons\server_event.ico" />
+    <EmbeddedResource Include="Icons\server_event_active.ico" />
+    <EmbeddedResource Include="Icons\server_event_complete.ico" />
+    <EmbeddedResource Include="Icons\server_event_error.ico" />
+    <EmbeddedResource Include="Icons\server_event_open.ico" />
+    <EmbeddedResource Include="Icons\start.ico" />
+    <EmbeddedResource Include="Icons\user_event.ico" />
+    <EmbeddedResource Include="Icons\user_event_active.ico" />
+    <EmbeddedResource Include="Icons\user_event_complete.ico" />
+    <EmbeddedResource Include="Icons\user_event_error.ico" />
+    <EmbeddedResource Include="Icons\user_event_open.ico" />
+    <EmbeddedResource Include="ViewControl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

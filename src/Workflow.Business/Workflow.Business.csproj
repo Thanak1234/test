@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16E6A55C-9D5A-42A7-908F-BCC536FE8066}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Workflow.Business</RootNamespace>
+    <AssemblyName>Workflow.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractActivity.cs" />
+    <Compile Include="AbstractFormDataProcessing.cs" />
+    <Compile Include="AbstractAction.cs" />
+    <Compile Include="BcjRequestForm\Level2ApprovalAct.cs" />
+    <Compile Include="BcjRequestForm\Level1ApprovalAct.cs" />
+    <Compile Include="HGVRRequestForm\HGVRRequestFormBC.cs" />
+    <Compile Include="HGVRRequestForm\IHGVRRequestFormBC.cs" />
+    <Compile Include="GMURequestForm\GMURequestFormBC.cs" />
+    <Compile Include="GMURequestForm\IGMURequestFormBC.cs" />
+    <Compile Include="IRFRequestForm\IIRFRequestForm.cs" />
+    <Compile Include="IRFRequestForm\IRFRequestForm.cs" />
+    <Compile Include="BcjRequestForm\CapexCommitteeAct.cs" />
+    <Compile Include="ITCRRequestForm\IRequestForm.cs" />
+    <Compile Include="ITCRRequestForm\RequestForm.cs" />
+    <Compile Include="JRAMRequestForm\IJRAMRequestFormBC.cs" />
+    <Compile Include="JRAMRequestForm\JRAMRequestFormBC.cs" />
+    <Compile Include="RMDRequestForm\IRMDRequestFormBC.cs" />
+    <Compile Include="RMDRequestForm\RMDRequestFormBC.cs" />
+    <Compile Include="ITEIRQRequestForm\ITEIRQRequestFormBC.cs" />
+    <Compile Include="ITEIRQRequestForm\IITEIRQRequestFormBC.cs" />
+    <Compile Include="ITADRequestForm\IRequestForm.cs" />
+    <Compile Include="ITADRequestForm\RequestForm.cs" />
+    <Compile Include="N2MwoRequestForm\IMwoRequestFormBC.cs" />
+    <Compile Include="N2MwoRequestForm\MwoRequestFormBC.cs" />
+    <Compile Include="OSHARequestForm\IOSHARequestForm.cs" />
+    <Compile Include="OSHARequestForm\OSHARequestForm.cs" />
+    <Compile Include="BcjRequestForm\BcjDraftActivity.cs" />
+    <Compile Include="ITRequestForm\ItRequstDraftActivity.cs" />
+    <Compile Include="MwoRequestForm\IMwoRequestFormBC.cs" />
+    <Compile Include="TASCRRequestForm\TASCRRequestFormBC.cs" />
+    <Compile Include="TASCRRequestForm\ITASCRRequestFormBC.cs" />
+    <Compile Include="EOMBPRequestForm\EOMBPRequestFormBC.cs" />
+    <Compile Include="EOMBPRequestForm\IEOMBPRequestFormBC.cs" />
+    <Compile Include="FADRequestForm\FADRequestFormBC.cs" />
+    <Compile Include="FADRequestForm\IFADRequestFormBC.cs" />
+    <Compile Include="ATCFRequestForm\ATCFRequestFormBC.cs" />
+    <Compile Include="ATCFRequestForm\IATCFRequestFormBC.cs" />
+    <Compile Include="FATRequestForm\FATRequestFormBC.cs" />
+    <Compile Include="FATRequestForm\IFATRequestFormBC.cs" />
+    <Compile Include="AdmsrRequestForm\IRequestForm.cs" />
+    <Compile Include="AdmsrRequestForm\RequestForm.cs" />
+    <Compile Include="VARequestForm\IRequestForm.cs" />
+    <Compile Include="VARequestForm\RequestForm.cs" />
+    <Compile Include="ITAppRequestForm\ITAppRequestForm.cs" />
+    <Compile Include="ITAppRequestForm\IITAppRequestForm.cs" />
+    <Compile Include="ATDRequestForm\ATDEditFormActivity.cs" />
+    <Compile Include="ATDRequestForm\ATDFormDataProcessing.cs" />
+    <Compile Include="ATDRequestForm\ATDRequestFormBC.cs" />
+    <Compile Include="ATDRequestForm\ATDSubmissionActivity.cs" />
+    <Compile Include="ATDRequestForm\IATDFormDataProcessing.cs" />
+    <Compile Include="ATDRequestForm\IATDRequestFormBC.cs" />
+    <Compile Include="ATTRequestForm\ATTEditFormAcitvity.cs" />
+    <Compile Include="ATTRequestForm\ATTFormDataProcessing.cs" />
+    <Compile Include="ATTRequestForm\ATTRequestFormBC.cs" />
+    <Compile Include="ATTRequestForm\ATTReworkedActivity.cs" />
+    <Compile Include="ATTRequestForm\ATTEXCOApprovalActivity.cs" />
+    <Compile Include="ATTRequestForm\ATTNAGATravelActivity.cs" />
+    <Compile Include="ATTRequestForm\ATTHRReviewActivity.cs" />
+    <Compile Include="ATTRequestForm\ATTHRApprovalActivity.cs" />
+    <Compile Include="ATTRequestForm\ATTSubmissionActivity.cs" />
+    <Compile Include="ATTRequestForm\HoDApprovalActivity.cs" />
+    <Compile Include="ATTRequestForm\IATTFormDataProcessing.cs" />
+    <Compile Include="ATTRequestForm\IATTRequestFormBC.cs" />
+    <Compile Include="AvdrForm\AvdrFormSubmissionActivity.cs" />
+    <Compile Include="AvdrForm\IAvdrFormBC.cs" />
+    <Compile Include="AvirForm\AvirFormBC.cs" />
+    <Compile Include="AvirForm\AvirFormDataProcessing.cs" />
+    <Compile Include="AvirForm\AvirFormSubmissionActivity.cs" />
+    <Compile Include="AvirForm\AvirFormEditActivity.cs" />
+    <Compile Include="AvirForm\IAvirFormBC.cs" />
+    <Compile Include="AvirForm\IAvirFormDataProcessing.cs" />
+    <Compile Include="AvdrForm\IAvdrFormDataProcessing.cs" />
+    <Compile Include="AvdrForm\AvdrFormDataProcessing.cs" />
+    <Compile Include="BcjRequestForm\BcjPurchasingActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMCreativeActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMDeptHoDApprovalActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMEditFormAcitvity.cs" />
+    <Compile Include="EOMRequestForm\EOMFormDataProcessing.cs" />
+    <Compile Include="EOMRequestForm\EOMRequestFormBC.cs" />
+    <Compile Include="EOMRequestForm\EOMRequestSubmissionActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMReworkedActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMTDApprovalActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMTDReviewActivity.cs" />
+    <Compile Include="EOMRequestForm\EOMPayrolllActivity.cs" />
+    <Compile Include="EOMRequestForm\IEOMFormDataProcessing.cs" />
+    <Compile Include="EOMRequestForm\IEOMRequestFormBC.cs" />
+    <Compile Include="AVRequestForm\AvbApprovalActivity.cs" />
+    <Compile Include="AVRequestForm\AvbDeptHoDApprovalActivity.cs" />
+    <Compile Include="AVRequestForm\AvbEditFormAcitvity.cs" />
+    <Compile Include="AVRequestForm\AvbFormDataProcessing.cs" />
+    <Compile Include="AVRequestForm\AvbRequestFormBC.cs" />
+    <Compile Include="AVRequestForm\AvbRequestSubmissionActivity.cs" />
+    <Compile Include="AVRequestForm\AvbReworkedActivity.cs" />
+    <Compile Include="AVRequestForm\AvbTechnicianActivity.cs" />
+    <Compile Include="AVRequestForm\IAvbFormDataProcessing.cs" />
+    <Compile Include="AVRequestForm\IAvbRequestFormBC.cs" />
+    <Compile Include="BcjRequestForm\BcjEditFormAcitvity.cs" />
+    <Compile Include="CRRRequestForm\CRRReservationReviewActivity.cs" />
+    <Compile Include="CRRRequestForm\GMApprovalActivity.cs" />
+    <Compile Include="CRRRequestForm\CRREditFormAcitvity.cs" />
+    <Compile Include="CRRRequestForm\CRRFormDataProcessing.cs" />
+    <Compile Include="CRRRequestForm\CRRRequestFormBC.cs" />
+    <Compile Include="CRRRequestForm\CRRReworkedActivity.cs" />
+    <Compile Include="CRRRequestForm\CRRSubmissionActivity.cs" />
+    <Compile Include="CRRRequestForm\HoDApprovalActivity.cs" />
+    <Compile Include="CRRRequestForm\ICRRFormDataProcessing.cs" />
+    <Compile Include="CRRRequestForm\ICRRRequestFormBC.cs" />
+    <Compile Include="DefaultAction.cs" />
+    <Compile Include="DefaultActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjFinanceApprovalActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjDyCFOApprovalActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjCFOApprovalActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjReworkedActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjExComApprovalActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjLoDApprovalActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjHoDApprovalActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjFormDataProcessing.cs" />
+    <Compile Include="BcjRequestForm\BcjRequestSubmissionActivity.cs" />
+    <Compile Include="BcjRequestForm\BcjRequestFormBC.cs" />
+    <Compile Include="BcjRequestForm\IBcjRequestFormBC.cs" />
+    <Compile Include="BcjRequestForm\IBcjFormDataProcessing.cs" />
+    <Compile Include="ERFRequestForm\ERFEditFormAcitvity.cs" />
+    <Compile Include="ERFRequestForm\ERFFormDataProcessing.cs" />
+    <Compile Include="ERFRequestForm\ERFRequestFormBC.cs" />
+    <Compile Include="ERFRequestForm\ERFHRRecuitmentActivity.cs" />
+    <Compile Include="ERFRequestForm\ERFReworkedActivity.cs" />
+    <Compile Include="ERFRequestForm\ERFSubmissionActivity.cs" />
+    <Compile Include="ERFRequestForm\ERFExComActivity.cs" />
+    <Compile Include="ERFRequestForm\HoDApprovalActivity.cs" />
+    <Compile Include="ERFRequestForm\IERFFormDataProcessing.cs" />
+    <Compile Include="ERFRequestForm\IERFRequestFormBC.cs" />
+    <Compile Include="FnFRequestForm\FnFReviewActivity.cs" />
+    <Compile Include="FnFRequestForm\FnFApprovalActivity.cs" />
+    <Compile Include="FnFRequestForm\HoDApprovalActivity.cs" />
+    <Compile Include="FnFRequestForm\FnFEditFormAcitvity.cs" />
+    <Compile Include="FnFRequestForm\FnFFormDataProcessing.cs" />
+    <Compile Include="FnFRequestForm\FnFRequestFormBC.cs" />
+    <Compile Include="FnFRequestForm\FnFSubmissionActivity.cs" />
+    <Compile Include="FnFRequestForm\FnFReworkedActivity.cs" />
+    <Compile Include="FnFRequestForm\FnFFinalReviewActivity.cs" />
+    <Compile Include="FnFRequestForm\IFnFFormDataProcessing.cs" />
+    <Compile Include="FnFRequestForm\IFnFRequestFormBC.cs" />
+    <Compile Include="IAction.cs" />
+    <Compile Include="IActivity.cs" />
+    <Compile Include="ICDRequestForm\ICDEditFormActivity.cs" />
+    <Compile Include="ICDRequestForm\ICDFormDataProcessing.cs" />
+    <Compile Include="ICDRequestForm\ICDRequestFormBC.cs" />
+    <Compile Include="ICDRequestForm\ICDSubmissionActivity.cs" />
+    <Compile Include="ICDRequestForm\IICDFormDataProcessing.cs" />
+    <Compile Include="ICDRequestForm\IICDRequestFormBC.cs" />
+    <Compile Include="IFormDataProcessing.cs" />
+    <Compile Include="Interfaces\IItRequestFormBC.cs" />
+    <Compile Include="Interfaces\IRequestFormBC.cs" />
+    <Compile Include="Interfaces\ISaveAttachment.cs" />
+    <Compile Include="AvdrForm\AvdrFormBC.cs" />
+    <Compile Include="AvdrForm\AvdrFormEditActivity.cs" />
+    <Compile Include="ITRequestForm\ITEditFormAcitvity.cs" />
+    <Compile Include="ITRequestForm\DeptHoDApprovalActivity.cs" />
+    <Compile Include="ITRequestForm\IItFormDataProcessing.cs" />
+    <Compile Include="ITRequestForm\ItDeptApprovalActivity.cs" />
+    <Compile Include="ITRequestForm\ItFromDataProcessing.cs" />
+    <Compile Include="ITRequestForm\ItHoDApprovalActivity.cs" />
+    <Compile Include="ITRequestForm\ItRequestFormBC.cs" />
+    <Compile Include="ITRequestForm\ItRequestFormReworkedActivity.cs" />
+    <Compile Include="ITRequestForm\ItRequstSubmissionActivity.cs" />
+    <Compile Include="ITRequestForm\ItImplementationActivity.cs" />
+    <Compile Include="ITRequestForm\ItTechnicianActivity.cs" />
+    <Compile Include="MCNRequestForm\IMCNFormDataProcessing.cs" />
+    <Compile Include="MCNRequestForm\IMCNRequestFormBC.cs" />
+    <Compile Include="MCNRequestForm\MCNEditFormActivity.cs" />
+    <Compile Include="MCNRequestForm\MCNFormDataProcessing.cs" />
+    <Compile Include="MCNRequestForm\MCNRequestFormBC.cs" />
+    <Compile Include="MCNRequestForm\MCNSubmissionActivity.cs" />
+    <Compile Include="MwoRequestForm\MwoRequestFormBC.cs" />
+    <Compile Include="ActivityEngine.cs" />
+    <Compile Include="MTFRequestForm\IMTFRequestFormBC.cs" />
+    <Compile Include="MTFRequestForm\MTFRequestFormBC.cs" />
+    <Compile Include="AdmCppRequestForm\IAdmCppRequestFormBC.cs" />
+    <Compile Include="AdmCppRequestForm\AdmCppRequestFormBC.cs" />
+    <Compile Include="PBFRequestForm\PBFRequestFormBC.cs" />
+    <Compile Include="PBFRequestForm\IPBFRequestFormBC.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AbstractRequestFormBC.cs" />
+    <Compile Include="ProcessCodeEnum.cs" />
+    <Compile Include="CCRRequestForm\ICCRRequestForm.cs" />
+    <Compile Include="CCRRequestForm\CCRRequestForm.cs" />
+    <Compile Include="AccessCardRequest\IRequestForm.cs" />
+    <Compile Include="AccessCardRequest\RequestForm.cs" />
+    <Compile Include="VoucherRequest\IRequestForm.cs" />
+    <Compile Include="VoucherRequest\RequestForm.cs" />
+    <Compile Include="WorkflowEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Workflow.Core\Workflow.Core.csproj">
+      <Project>{c885b24f-052b-465f-ba0c-18db3db56616}</Project>
+      <Name>Workflow.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.DataAcess\Workflow.DataAcess.csproj">
+      <Project>{9461fab5-9d21-4566-9c6e-4587b814982a}</Project>
+      <Name>Workflow.DataAcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Domain\Workflow.Domain.csproj">
+      <Project>{a2841867-8d8a-419a-80bb-d3dee9864a3b}</Project>
+      <Name>Workflow.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Framework\Workflow.Framework.csproj">
+      <Project>{E7C78513-504D-4834-802F-3B6C9B17C2A9}</Project>
+      <Name>Workflow.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.MSExchange\Workflow.MSExchange.csproj">
+      <Project>{90dee8ea-8f72-4a7f-8677-8d076049115c}</Project>
+      <Name>Workflow.MSExchange</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.ReportingService\Workflow.ReportingService.csproj">
+      <Project>{0ebb5fd3-c014-43ec-a6cf-38355e4f97a0}</Project>
+      <Name>Workflow.ReportingService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

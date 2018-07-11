@@ -1,0 +1,6 @@
+#frame {
+    height: 200%; /* new height (400 * (1/0.8) ) */
+    width: 200%; /* new width (100 * (1/0.8) )*/
+    transform: scale(0.5); 
+    transform-origin: 0 0;
+}

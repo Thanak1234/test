@@ -1,0 +1,29 @@
+
+// COLOR PALETTE
+
+$ng-dark-background: dynamic(#3e4752);
+$ng-light-background: dynamic(#ececec);
+$ng-tile-background: dynamic(#ffffff);
+
+$ng-blue-color: dynamic(#2e6eaf);
+$ng-red-color: dynamic(#f1495b);
+$ng-green-color: dynamic(#11c897);
+$ng-light-blue-color: dynamic(saturate(lighten($ng-blue-color, 53%), 70%));
+
+$ng-font-light-color: dynamic(#a0a7b8);
+$ng-font-color: dynamic(#878ea2);
+$ng-font-dark-color: dynamic($ng-dark-background);
+
+//Proxima Nova is preferred font, but it is not a free font.
+$ng-font-family: dynamic("Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif);
+
+$ng-font-size-small-content: dynamic(10px);
+$ng-font-size-content: dynamic(12px);
+$ng-font-size-small-title: dynamic(14px);
+$ng-font-size-medium-title: dynamic(18px);
+$ng-font-size-large-title: dynamic(20px);
+$ng-font-size-xlarge-title: dynamic(28px);
+
+$ng-font-regular: dynamic(400);
+$ng-font-semibold: dynamic(500);
+$ng-font-bold: dynamic(800);

@@ -1,0 +1,75 @@
+﻿@model IList<Workflow.Dto.Scheduler.FormLongPending>
+<html>
+<header>
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana,arial,sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+
+            table.gridtable th {
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                border-color: #666666;
+                background-color: #dedede;
+            }
+
+            table.gridtable td {
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                border-color: #666666;
+                background-color: #ffffff;
+            }
+    </style>
+</header>
+<body>
+    Dear All,
+    <br />
+    <h5 style='color:#347D7E; font-weight: bold'>FORM LONG PENDING REPORT</h5>
+    <br />
+    <table class="gridtable">
+        <tr>
+            <th>Folio</th>
+            <th>App Name</th>
+            <th>Requestor Id</th>
+            <th>Requestor</th>
+            <th>Department Name</th>
+            <th>Submitted By</th>
+            <th>Submitted Date</th>
+            <th>Last Activity</th>
+            <th>Last Action By</th>
+            <th>Last Action Date</th>            
+            <th>Action</th>
+            <th>Days</th>
+            <th>Status</th>
+            <th>Flow</th>
+        </tr>        
+        @for (int i = 0; i < Model.Count; i++) {
+            <tr>
+                <td><a href="@Model[i].FormUrl">@Model[i].Folio</a></td>
+                <td>@Model[i].AppName</td>
+                <td>@Model[i].RequestorNo</td>
+                <td>@Model[i].Requestor</td>
+                <td>@Model[i].DeptName</td>
+                <td>@Model[i].SubmittedBy</td>
+                <td>@Model[i].SubmittedDate</td>
+                <td>@Model[i].LastActivity</td>
+                <td>@Model[i].LastActionBy</td>
+                <td>@Model[i].LastActionDate</td>                
+                <td>@Model[i].Action</td>
+                <td>@Model[i].Days</td>
+                <td>@Model[i].Status</td>
+                <td><a href="@Model[i].WorkflowUrl">View Flow</a></td>
+            </tr>
+        }
+    </table>
+    <br><span style='font-size:12.0pt;color:#1F497D'>Regards,</span><br /><b><u><span style='font-size:12.0pt;color:#347D7E'>Group IT Department</span></u></b><br /><br><i><span style='font-size:9.0pt;color:#347D7E'>Email : </span></i><i><u><span style='font-size:12.0pt;color:#347D7E'><a href='mailto:programming-it@nagaworld.com' target='_blank'><span style='font-style:normal'>programming-it@nagaworld.com</span></a></span></u></i><span style='font-size:12.0pt;color:black'><br><a href='http://www.nagaworld.com' target='_blank'><i>www.nagaworld.com</i></a></span>
+    <p style='color:navy;'><b>Internet E-mail Confidentiality Footer</b><br>This E-mail is confidential and intended only for the use of the individual(s) or entity named above and may contain information that is privileged. If you are not the intended recipient, you are advised that any dissemination, distribution or copying of this E-mail is strictly prohibited. If you have received this E-mail in error, please notify us immediately by return E-mail or telephone and destroy the original message.</p>
+</body>
+</html>

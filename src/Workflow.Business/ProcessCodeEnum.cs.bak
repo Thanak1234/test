@@ -1,0 +1,39 @@
+﻿namespace Workflow.Business
+{
+    public class PROCESSCODE
+    {
+        public static string BCJ = "BCJ_REQ";
+        public static string ITF = "IT_REQ";
+        public static string MTRQ = "MT_REQ";
+        public static string AVJB = "AVJ_REQ";
+        public static string RSVNFF = "RSVNFF_REQ";
+        public static string RSVNCR = "RSVNCR_REQ";
+        public static string ERF = "ERF_REQ";
+        public static string PB = "PBF_REQ";
+        public static string MWO = "MWO_REQ";
+        public static string N2MWO = "N2MWO_REQ";
+        public static string ATT = "ATT_REQ";
+        public static string EGMIR = "EGMIR_REQ";
+        public static string EOM = "EOM_REQ";
+        public static string EGMMR = "EGMMR_REQ";
+        public static string EGMATT = "EGMATT_REQ";
+        public static string ADMCPP = "ADMCPP_REQ";
+        public static string ITSWD = "ITSWD_REQ";
+        public static string IAVAF = "IAVAF_REQ";
+        public static string VR = "VR_REQ";
+        public static string CCR = "CCR_REQ";
+        public static string RAC = "RAC_REQ";
+        public static string FAD = "FAD_REQ";
+        public static string FAT = "FAT_REQ";
+        public static string ATCF = "ATCF_REQ";
+        public static string EOMBP = "EOMBP_REQ";
+        public static string TASCR = "TASCR_REQ";
+        public static string OSHA = "OSHA_REQ";
+        public static string ADMSR = "ADMSR_REQ";
+        public static string ITAD = "ITAD_REQ";
+        public static string IBR = "IBR_REQ";
+        public static string RMD = "RMD_REQ";
+        public static string JRAM = "JRAM_REQ"; 
+        public static string ITCR = "ITCR_REQ";
+    }
+}

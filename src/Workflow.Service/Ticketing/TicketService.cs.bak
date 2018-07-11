@@ -1,0 +1,778 @@
+﻿/**
+*@author : Phanny
+*/
+using System;
+using System.Collections.Generic;
+using Workflow.Business.Ticketing;
+using Workflow.Business.Ticketing.Impl;
+using Workflow.DataAcess.Infrastructure;
+using Workflow.DataAcess.Repositories.ticket;
+using Workflow.Dto;
+using Workflow.Dto.Ticket;
+using Workflow.Entities.Ticket;
+using Workflow.Service.FileUploading;
+using Workflow.Service.Interfaces.ticketing;
+
+namespace Workflow.Service.Ticketing
+{
+    public class TicketService : ITicketService
+    {
+        private readonly IDataProcessingProvider dataProcessingProvider;
+        private readonly ITicketEnquiry ticketEnquiry;
+        private readonly ILoadTicketData load;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ITicketItemRepository ticketItemRepo;
+        private readonly ITicketLookupRepository ticketLookupRepo;
+        private readonly ITicketSubCategoryRepository subCategoryRepo;
+        private readonly ITicketCategoryRepository categoryRepo;
+        private readonly ITicketAgentRepository agentRepo;
+        private readonly ITicketDeptRepository deptRepo;
+        private readonly ITicketGroupPolicyReplository groupPolicyRepo;
+        private readonly ITicketTeamRepository teamRepo;
+        private readonly ITicketTeamAgentAssignRepository teamAgentAssignRepo;
+        private readonly ITicketSlaRepository slaRepo;
+        private readonly ITicketPriorityRepository priorityRepo;
+        private readonly ITicketGroupPolicyTeamAssignRepository groupPolicyTeamAssignRepo;
+        private readonly ITicketingRepository ticketingRepo;
+        private readonly ITicketGroupPolicyReportAssignRepository groupPolicyReportAssignRepo;
+
+        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        public TicketService()
+        {
+            var dbContext = DbContextSelector.getInstance().getDbFactory(DbContextSelector.DbName.Workflow);
+            dataProcessingProvider = new TicketDataProcessingProvider(dbContext);
+            this.unitOfWork = new UnitOfWork(DbContextSelector.getInstance().getDbFactory(DbContextSelector.DbName.Workflow));
+
+            ticketEnquiry = (ITicketEnquiry)dataProcessingProvider;
+            load = new LoadTicketData(dataProcessingProvider);
+            
+            this.subCategoryRepo = new TicketSubCategoryRepository(dbContext);
+            this.categoryRepo = new TicketCategoryRepository(dbContext);
+            this.agentRepo = new TicketAgentRepository(dbContext);
+            this.deptRepo = new TicketDeptRepository(dbContext);
+            this.groupPolicyRepo = new TicketGroupPolicyRepository(dbContext);
+            this.teamRepo = new TicketTeamRepository(dbContext);
+            this.teamAgentAssignRepo = new TicketTeamAgentAssignRepository(dbContext);
+            this.ticketItemRepo = new TicketItemRepository(dbContext);
+            this.ticketLookupRepo = new TicketLookupRepository(dbContext);
+            this.slaRepo = new TicketSlaRepository(dbContext);
+            this.priorityRepo = new TicketPriorityRepository(dbContext);
+            this.groupPolicyTeamAssignRepo = new TicketGroupPolicyTeamAssignRepository(dbContext);
+            this.ticketingRepo = new TicketingRepository(dbContext);
+            this.groupPolicyReportAssignRepo = new TicketGroupPolicyReportAssignRepository(dbContext);
+        }
+
+       
+        public FileUploadInfo getDownloadInfo(string serial)
+        {
+            var fileUpload = ticketEnquiry.getFileInfo(serial);
+            IFileUploadService uploadService = new FileUploadService();
+            var file = uploadService.getUploadFile(serial);
+
+            var fileUploadInfo = new FileUploadInfo()
+            {
+                fileName= fileUpload.FileName,
+                ext = fileUpload.Ext,
+                Stream = file.DataContent
+            };
+
+            return fileUploadInfo;
+        }
+
+        public ITicketEnquiry getTicketEnquiry()
+        {
+            return ticketEnquiry;
+        }
+
+        public TicketViewDto loadTicket(int id)
+        {
+           return dataProcessingProvider.getTicketView(id);
+        }
+
+        public TicketViewDto loadTicket(int id, EmployeeDto emp)
+        {
+            ILoadTicketData load = new LoadTicketData(dataProcessingProvider);
+            return load.getTicketView(id,emp);
+        }
+
+        public List<ActionDto> getActions(int ticketId, EmployeeDto emp)
+        {
+            return load.getActions(ticketId, emp);
+        }
+
+        public Object takeAction(ITicketDataParser ticketDataParser)
+        {
+            return takeAction(ticketDataParser,null);   
+        }
+
+        public object takeAction(ITicketDataParser ticketDataParser, IActivityMessageHandler moreActMsgHandler)
+        {
+
+            var ticketParam = ticketDataParser.parse();
+            ITicketActivityHandler acitivity = TicketActivityFactoryImpl.getInstance().getTicketActivityHandler(dataProcessingProvider, ticketParam);
+
+            IActivityMessageHandler actMsgHandler = new ActivityMessageHandler(dataProcessingProvider);
+            acitivity.addActMsgHandler(actMsgHandler);
+            if(moreActMsgHandler != null)
+            {
+                acitivity.addActMsgHandler(moreActMsgHandler);
+            }
+
+            if (ticketDataParser.getActivityDto() != null)
+            {
+                acitivity.addActMsgHandler(new K2ActionHandlers(ticketEnquiry, ticketDataParser.getActivityDto().CurrUser));
+            }
+            
+            acitivity.setNotifyHandler(new TicketNotifyHander(dataProcessingProvider));
+
+            var tran = this.unitOfWork.begin();
+            try
+            {
+                acitivity.takeAction();
+                unitOfWork.commit(tran);
+            }
+            catch (Exception e)
+            {
+                unitOfWork.rollBack(tran);
+                logger.Error(e);
+                throw e;
+            }
+
+            var message = ((ITicketMessaging)actMsgHandler).getMessage();
+
+            return message;
+        }
+
+        public TicketAssignment getTicketAssignment(int ticketId)
+        {
+            return dataProcessingProvider.getCurrentAssigned(ticketId);
+        }
+
+        public IEnumerable<TicketItemDto> getTicketItems(string query)
+        {
+            return ticketItemRepo.getTicketItems(query);
+        }
+        public TicketItem addNewTicketItem(TicketItem item)
+        {
+            try
+            {
+                ticketItemRepo.Add(item);
+                return item;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return item;
+            }
+
+
+        }
+        public TicketItem updateTicketItem(TicketItem item)
+        {
+            try
+            {
+                ticketItemRepo.Update(item);
+                return item;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return item;
+            }
+
+        }
+        public void deleteTicketItem(int id)
+        {
+            TicketItem item = ticketItemRepo.GetById(id);
+            ticketItemRepo.Delete(item);
+        }
+
+        public IEnumerable<TicketSubCategoryDto> getSubCategories(string query = null)
+        {
+            return subCategoryRepo.getSubCategories(query);
+        }
+
+        public TicketSubCategory addNewSubCategory(TicketSubCategory subCategory)
+        {
+            subCategoryRepo.Add(subCategory);
+            return subCategory;
+        }
+        public TicketSubCategory updateSubCategory(TicketSubCategory subCategory)
+        {
+            subCategoryRepo.Update(subCategory);
+            return subCategory;
+        }
+        public void deleteSubCategory(int id)
+        {
+            TicketSubCategory cat = subCategoryRepo.GetById(id);
+            subCategoryRepo.Delete(cat);
+        }
+
+        public IEnumerable<TicketCategoryDto> getCategories(string query = null)
+        {
+            return categoryRepo.getCategories(query);
+        }
+
+        public TicketCategory addNewCategory(TicketCategory category)
+        {
+            categoryRepo.Add(category);
+            return category;
+        }
+
+        public TicketCategory updateCategory(TicketCategory category)
+        {
+            categoryRepo.Update(category);
+            return category;
+
+        }
+
+        public void deleteCategory(int id)
+        {
+            TicketCategory cat = categoryRepo.GetById(id);
+            categoryRepo.Delete(cat);
+        }
+
+
+        public IEnumerable<TicketAgentDto> getAgents(string query = null)
+        {
+            return agentRepo.getAgents(query);
+        }
+        public TicketAgent addNewAgent(TicketAgent instance)
+        {
+            try
+            {
+                agentRepo.Add(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+
+        }
+        public TicketAgent updateAgent(TicketAgent instance)
+        {
+            try
+            {                
+                agentRepo.Update(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+
+        }
+        public void deleteAgent(int id)
+        {
+            TicketAgent instance = agentRepo.GetById(id);
+            agentRepo.Delete(instance);
+        }
+        
+        public TicketTeamDto addNewTeamAgents(TicketTeamDto instance)
+        {
+            try
+            {
+                TicketTeam team = new TicketTeam();
+
+                team.Description = instance.description;
+                team.DirectoryListing = instance.directoryListing;
+
+                team.Status = instance.status;
+                team.TeamName = instance.teamName;
+                teamRepo.Add(team);
+                foreach (AgentAssignListDto agent in instance.registeredAgents)
+                {
+                    TicketTeamAgentAssign t = new TicketTeamAgentAssign();
+                    t.ImmediateAssign = agent.immediateAssign;
+                    t.Status = "ACTIVE";
+                    t.TeamId = team.Id;
+                    t.AgentId = agent.id;
+                    teamAgentAssignRepo.Add(t);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+
+            }
+            return instance;
+        }
+
+        public TicketTeamDto updateTeamAgents(TicketTeamDto instance)
+        {
+            TicketTeam team = teamRepo.GetById(instance.id);
+
+            team.Description = instance.description;
+            team.DirectoryListing = instance.directoryListing;
+
+            team.Status = instance.status;
+            team.TeamName = instance.teamName;
+            teamRepo.Update(team);
+
+            IEnumerable<TicketTeamAgentAssign> removeList = teamAgentAssignRepo.getListByPartners(team.Id, 0);
+
+            //remove previous ones
+            try
+            {
+                foreach (TicketTeamAgentAssign a in removeList)
+                {
+                    a.Status = "DELETE";
+                    teamAgentAssignRepo.Update(a);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+
+            if (instance.registeredAgents != null)
+            {
+                foreach (AgentAssignListDto agent in instance.registeredAgents)
+                {
+                    TicketTeamAgentAssign t = new TicketTeamAgentAssign();
+                    t.ImmediateAssign = agent.immediateAssign;
+                    t.Status = "ACTIVE";
+                    t.TeamId = team.Id;
+                    t.AgentId = agent.id;
+                    teamAgentAssignRepo.Add(t);
+                }
+            }
+            return instance;
+        }
+
+        public IEnumerable<TicketDepartmentDto> getDepartments(string query = null)
+        {
+            return deptRepo.getDepartments(query);
+        }
+        public TicketDepartment addNewDepartment(TicketDepartment instance)
+        {
+            try
+            {
+                instance.Status = "ACTIVE";
+                deptRepo.Add(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public TicketDepartment updateDepartment(TicketDepartment instance)
+        {
+            try
+            {
+                instance.Status = "ACTIVE";
+                deptRepo.Update(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public void deleteDepartment(int id)
+        {
+            deptRepo.Delete(deptRepo.GetById(id));
+        }
+
+        public IEnumerable<TicketGroupPolicyDto> getGroupPolicies(string query = null)
+        {
+            return groupPolicyRepo.getGroupPolicies(query);
+        }
+
+        private TicketGroupPolicy createGroupPolicyObject(TicketGroupPolicyDto instance)
+        {
+            TicketGroupPolicy groupPolicy = new TicketGroupPolicy();
+
+            groupPolicy.Description = instance.description;
+            groupPolicy.GroupName = instance.groupName;
+            groupPolicy.Status = instance.status;
+            groupPolicy.LimitAccess = instance.limitAccess;
+            groupPolicy.NewTicketNotify = instance.newTicketNotify;
+            groupPolicy.AssignedNotify = instance.assignedNotify;
+            groupPolicy.ReplyNotify = instance.replyNotify;
+            groupPolicy.ChangeStatusNotify = instance.changeStatusNotify;
+            groupPolicy.CreateTicket = instance.createTicket;
+            groupPolicy.EditTicket = instance.editTicket;
+            groupPolicy.ChangeStatus = instance.changeStatus;
+            groupPolicy.PostTicket = instance.postTicket;
+            groupPolicy.CloseTicket = instance.closeTicket;
+            groupPolicy.AssignTicket = instance.assignTicket;
+            groupPolicy.MergeTicket = instance.mergeTicket;
+            groupPolicy.DeleteTicket = instance.deleteTicket;
+            groupPolicy.SubTicket = instance.subTicket;
+            groupPolicy.ReportAccess = instance.reportAccess;
+            return groupPolicy;
+        }
+        public TicketGroupPolicy addNewGroupPolicy(TicketGroupPolicyDto instance)
+        {
+            TicketGroupPolicy gp = createGroupPolicyObject(instance);
+            try
+            {
+                
+                groupPolicyRepo.Add(gp);
+
+                DateTime currentDate = DateTime.Now;
+                foreach (GroupPolicyAssignTeamListDto dto in instance.assignTeamList)
+                {
+                    TicketGroupPolicyTeamAssign t = new TicketGroupPolicyTeamAssign();
+                    t.GroupPolicyId = gp.Id;
+                    t.TeamId = dto.teamId;
+                    t.CreatedDate = currentDate;
+                    t.Status = "ACTIVE";
+                    groupPolicyTeamAssignRepo.Add(t);
+                }
+
+                foreach (GroupPolicyAssignTeamListDto dto in instance.assignReportLimitAccessTeamList)
+                {
+                    TicketGroupPolicyReportAssign t = new TicketGroupPolicyReportAssign();
+                    t.GroupPolicyId = gp.Id;
+                    t.TeamId = dto.teamId;
+                    t.CreatedDate = currentDate;
+                    t.Status = "ACTIVE";
+                    groupPolicyReportAssignRepo.Add(t);
+                }
+                return gp;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return gp;        
+            }
+        }
+        public TicketGroupPolicy updateGroupPolicy(TicketGroupPolicyDto instance)
+        {
+            TicketGroupPolicy gp = createGroupPolicyObject(instance);
+            try
+            {
+                gp.Id = instance.id;
+                groupPolicyRepo.Update(gp);
+                DateTime currentDate = DateTime.Now;
+                //remove priouse ones
+                foreach (TicketGroupPolicyTeamsDto obj in groupPolicyTeamAssignRepo.getListByPartners(0, gp.Id))
+                {
+                    TicketGroupPolicyTeamAssign gpTa = groupPolicyTeamAssignRepo.GetById(obj.id);
+                    gpTa.CreatedDate = currentDate;
+                    gpTa.Status = "DELETE";
+                    groupPolicyTeamAssignRepo.Update(gpTa);
+                }
+
+                foreach (TicketGroupPolicyTeamsDto obj in groupPolicyReportAssignRepo.getListByPartners(0, gp.Id))
+                {
+                    TicketGroupPolicyReportAssign gpTa = groupPolicyReportAssignRepo.GetById(obj.id);
+                    gpTa.CreatedDate = currentDate;
+                    gpTa.Status = "DELETE";
+                    groupPolicyReportAssignRepo.Update(gpTa);
+                }
+
+                IEnumerable<GroupPolicyAssignTeamListDto> gpTeamAssignList = instance.assignTeamList;
+                
+                foreach (GroupPolicyAssignTeamListDto dto in gpTeamAssignList)
+                {
+                    TicketGroupPolicyTeamAssign gpTaObj = new TicketGroupPolicyTeamAssign();
+                    gpTaObj.CreatedDate = currentDate;
+                    gpTaObj.TeamId = dto.teamId;
+                    gpTaObj.GroupPolicyId = gp.Id;
+                    gpTaObj.Status = "ACTIVE";
+                    gpTaObj.ModifiedDate = currentDate;
+                    gpTaObj.Description = "Team assigned";
+                    groupPolicyTeamAssignRepo.Add(gpTaObj);
+                }
+
+                IEnumerable<GroupPolicyAssignTeamListDto> gpReportAssignList = instance.assignReportLimitAccessTeamList;
+
+                foreach (GroupPolicyAssignTeamListDto dto in gpReportAssignList)
+                {
+                    TicketGroupPolicyReportAssign gpTaObj = new TicketGroupPolicyReportAssign();
+                    gpTaObj.CreatedDate = currentDate;
+                    gpTaObj.TeamId = dto.teamId;
+                    gpTaObj.GroupPolicyId = gp.Id;
+                    gpTaObj.Status = "ACTIVE";
+                    gpTaObj.ModifiedDate = currentDate;
+                    gpTaObj.Description = "Team assigned";
+                    groupPolicyReportAssignRepo.Add(gpTaObj);
+                }
+
+                return gp;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return gp;
+            }
+        }
+        public void deleteGroupPolicy(int id)
+        {
+            groupPolicyRepo.Delete(groupPolicyRepo.GetById(id));
+        }
+
+        public IEnumerable<TicketTeamDto> getTeams(string query = null)
+        {
+            return teamRepo.getTeams(query);
+        }
+        public TicketTeam addNewTeam(TicketTeam instance)
+        {
+            try
+            {
+                teamRepo.Add(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public TicketTeam updateTeam(TicketTeam instance)
+        {
+            try
+            {
+                teamRepo.Update(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+
+        }
+        public void deleteTeam(int id)
+        {
+            teamRepo.Delete(teamRepo.GetById(id));
+        }
+
+        public IEnumerable<TicketAgentTeamsDto> getAgentTeams(int agentId = 0)
+        {
+            try
+            {
+                return teamRepo.getAgentTeams(agentId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+
+        }
+
+        public IEnumerable<TicketTeamAgentsDto> getTeamAgents(int teamId = 0)
+        {
+            try
+            {
+                return teamRepo.getTeamAgents(teamId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+
+        }
+
+        public IEnumerable<GeneralLookupDto> listTicketGroupPolicy()
+        {
+            return ticketLookupRepo.listTicketGroupPolicy();
+        }
+        public IEnumerable<GeneralLookupDto> listTicketDepartment()
+        {
+            return ticketLookupRepo.listTicketDepartment();
+        }
+        public IEnumerable<GeneralLookupDto> listTicketStatus()
+        {
+            return ticketLookupRepo.listTicketStatus();
+        }
+        public IEnumerable<GeneralLookupDto> listTicketAccountType()
+        {
+            return ticketLookupRepo.listTicketAccounttype();
+        }
+
+
+
+        public IEnumerable<TicketSlaDto> getSlas(string query = null)
+        {   
+            return slaRepo.getSlas(query);            
+        }
+        public TicketSLA addNewSla(TicketSLA instance)
+        {
+            try
+            {   
+                slaRepo.Add(instance);
+                return instance;
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public TicketSLA updateSla(TicketSLA instance)
+        {
+            try
+            {
+                slaRepo.Update(instance);
+                return instance;
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public void deleteSla(int id)
+        {
+            slaRepo.Delete(slaRepo.GetById(id));
+        }
+
+
+        public IEnumerable<TicketPriorityDto> getPriorities(string query = null)
+        {
+            return priorityRepo.getPriorities(query);
+        }
+        public TicketPriority addNewPriority(TicketPriority instance)
+        {
+            try
+            {
+                priorityRepo.Add(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public TicketPriority updatePriority(TicketPriority instance)
+        {
+            try
+            {
+                priorityRepo.Update(instance);
+                return instance;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return instance;
+            }
+        }
+        public void deletePriority(int id)
+        {
+            priorityRepo.Delete(priorityRepo.GetById(id));
+        }
+
+        public IEnumerable<TicketGroupPolicyTeamsDto> getGroupPolicyTeams(int groupPolicyId = 0)
+        {
+            try
+            {
+                return groupPolicyRepo.getTeams(groupPolicyId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+        }
+
+        public object GetReportResult(TicketingSearchParamsDto dto)
+        {
+            return ticketingRepo.GetReportResult(dto);
+        }
+
+        public IEnumerable<TicketGroupPolicyTeamsDto> getGroupPolicyReportAccessTeams(int groupPolicyId = 0)
+        {
+            try
+            {
+                return groupPolicyRepo.getReportAccessTeams(groupPolicyId);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+        }
+
+        public IEnumerable<TicketTeam> getTeamsByAgent(TicketAgent instance)
+        {
+            if (instance.Status == "INACTIVE")
+            {
+                return agentRepo.getTeamByAgent(instance);
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+        
+        public Boolean isItemExisted(TicketItem instance)
+        {
+            return ticketItemRepo.isItemExisted(instance);
+        }
+        public Boolean isSubCategoryExisted(TicketSubCategory instance)
+        {
+            return subCategoryRepo.isSubCategoryExisted(instance);
+        }
+        public Boolean isCategoryExisted(TicketCategory instance)
+        {
+            return categoryRepo.isCategoryExisted(instance);
+        }
+        public Boolean isDepartmentExisted(TicketDepartment instance)
+        {
+            return deptRepo.isDepartmentExisted(instance);
+        }
+        public Boolean isGroupPolicyExisted(TicketGroupPolicyDto instance)
+        {
+            return groupPolicyRepo.isGroupPoliciesExisted(instance);
+        }
+        public Boolean isAgentExisted(TicketAgent instance)
+        {
+            return agentRepo.isAgentExisted(instance);
+        }
+        public Boolean isTeamExisted(TicketTeamDto instance)
+        {
+            return teamRepo.isTeamExisted(instance);
+        }
+        public Boolean isSLAExisted(TicketSLA instance)
+        {
+            return slaRepo.isSlaExisted(instance);
+        }
+        public Boolean isPriorityExisted(TicketPriority instance)
+        {
+            return priorityRepo.isPriorityExisted(instance);
+        }
+
+        public IEnumerable<TicketTeamDto> getTeams(TicketSettingCriteria criteria)
+        {
+            return teamRepo.getTeams(criteria);
+        }
+
+        public IEnumerable<TicketSubCategoryDto> getSubCategories(TicketSettingCriteria criteria)
+        {
+            return subCategoryRepo.getSubCategories(criteria);
+        }
+
+        public IEnumerable<TicketCategoryDto> getCategories(TicketSettingCriteria criteria)
+        {
+            return categoryRepo.getCategories(criteria);
+        }
+
+        public IEnumerable<TicketDepartmentDto> getDepartments(TicketSettingCriteria criteria)
+        {
+            return deptRepo.getDepartments(criteria);
+        }
+
+        public IEnumerable<TicketItemDto> getTicketItems(TicketSettingCriteria criteria)
+        {
+            return ticketItemRepo.getTicketItems(criteria);
+        }
+
+    }
+
+    
+
+}

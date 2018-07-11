@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Workflow.Web.Service.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RPT_PATH_AVJ_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/Event/AVJobBrief</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_IT_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/IT/ItRequest</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_MT_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/HR/MedicalCheckedRequestor</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_BCJ_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/Finance/BusinessCaseJustificationForm</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_ERF_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/HR/EmployeeRequisition</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_RSVNFF_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/Reservation/FnFBookingRequest</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_RSVNCR_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/Reservation/CRoomRequest</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_PBF_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/Event/ProjectBrief</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_MWO_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/Maintenance/Maintenance Work Order</Value>
+    </Setting>
+    <Setting Name="RPT_PATH_ATT_REQ" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/K2Report/HR/AuthorisationToTravel</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

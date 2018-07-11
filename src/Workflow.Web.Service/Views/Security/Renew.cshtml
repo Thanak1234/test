@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+    string UI_RESOURCE_PATH = ViewBag.UI_RESOURCE_PATH;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Renew Session</title>
+    <!--Reference the jQuery library. -->
+    <script type="text/javascript" src="@UI_RESOURCE_PATH/resources/scripts/jquery-1.6.4.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Session will be renewed automatically.</h1>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            window.close();
+        });
+    </script>
+</body>
+</html>

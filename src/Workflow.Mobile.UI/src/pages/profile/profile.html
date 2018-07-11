@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding *ngIf="info">
+    <ion-list-header>Personal Information</ion-list-header>
+    <ion-item>
+        <h3>Employee No:</h3>
+        <h3 item-right>{{info.employeeNo}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Name:</h3>
+        <h3 item-right>{{info.fullName}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Position:</h3>
+        <h3 item-right>{{info.position}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Phone:</h3>
+        <h3 item-right>{{info.phone}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Phone (Ext):</h3>
+        <h3 item-right>{{info.ext}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Email:</h3>
+        <h3 item-right>{{info.email}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>HoD:</h3>
+        <h3 item-right>{{info.hod}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Sub Department:</h3>
+        <h3 item-right>{{info.subDept}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Group:</h3>
+        <h3 item-right>{{info.groupName}}</h3>
+    </ion-item>
+    <ion-item>
+        <h3>Division:</h3>
+        <h3 item-right>{{info.devision}}</h3>
+    </ion-item>
+</ion-content>

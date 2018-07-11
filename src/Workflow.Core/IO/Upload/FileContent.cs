@@ -1,0 +1,37 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
+
+namespace Workflow.Domain.Entities.Core.Document
+{
+	public class FileContent
+    {
+ 		public string FileName { get; set; }
+
+        public string Content { get; set; }
+
+        public string ToXml()
+        {
+            var content = new FileContent() {
+                FileName = this.FileName,
+                Content = this.Content
+            };
+
+            var emptyNamepsaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+            var serializer = new XmlSerializer(content.GetType());
+            var settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.OmitXmlDeclaration = true;
+
+            using (var stream = new StringWriter())
+            using (var writer = XmlWriter.Create(stream, settings))
+            {
+                serializer.Serialize(writer, content, emptyNamepsaces);
+                return stream.ToString();
+            }
+
+        }
+    }
+}

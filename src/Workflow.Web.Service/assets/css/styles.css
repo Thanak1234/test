@@ -1,0 +1,223 @@
+/*!
+ * Ext JS
+ * Copyright(c) 2006-2012 Sencha Inc.
+ * licensing@sencha.com
+ * http://www.sencha.com/license
+ */
+body {
+    padding:20px;
+    padding-top:32px;
+}
+.x-body {
+    font-family:helvetica,tahoma,verdana,sans-serif;
+    font-size:13px;
+}
+
+#options-toolbar{
+	
+}
+
+.ks-profile-switcher{
+	margin:0 15px;
+	cursor:pointer;
+	background-image:url(../images/options.png);
+	width:22px;
+	height:22px
+}
+
+.thumbnails{display:table}
+.thumbnail-item{
+	float:left;
+	width:116px;
+	height:156px;
+	margin-right:20px;
+	cursor:pointer;
+	overflow:hidden
+}
+
+.thumbnail-text{text-align:center}
+.thumbnail-icon-wrap{
+	width:96px;
+	height:96px;
+	text-align:center;
+	font-size:96px;
+	line-height:96px;
+	font: normal normal normal 14px/1 FontAwesome;
+	margin:0 auto 8px;
+	position:relative;
+	overflow:hidden;
+	color:#275287
+}
+
+.thumbnail-icon{
+	position:absolute;
+	top:0;left:0;
+	height:100%;
+	width:100%;
+	text-align:center;
+	font-size:48px;
+	line-height:96px;
+	color:#fff;
+	overflow:hidden
+}
+.x-rtl.thumbnails .thumbnail-item{
+	direction:ltr;
+	float:right;
+	margin-right:0;
+	margin-left:20px
+}
+
+.x-rtl.thumbnails .thumbnail-text{direction:rtl}
+.code-content pre.prettyprint{
+	margin:0;
+	border:0
+}
+
+#content-panel-body{background-image:url(../images/square.gif)}
+#workspace-dashboard {padding:20px;vertical-align:middle; display: table-cell;}
+#workspace-dashboard > *{margin:auto}
+#app-header{
+	background-color:#214674;
+	background-image:-webkit-gradient(linear, top, bottom, color-stop(0%, #275287), color-stop(0%, #1b3a60));
+	background-image:-webkit-linear-gradient(top, #275287, #1b3a60);
+	background-image:-moz-linear-gradient(top, #275287, #1b3a60);
+	background-image:-o-linear-gradient(top, #275287, #1b3a60);
+	background-image:-ms-linear-gradient(top, #275287, #1b3a60);
+	background-image:linear-gradient(top,#275287, #1b3a60);
+	border-bottom:1px solid #102238
+}
+#app-header{
+	/* background-color:#28384a; */
+	border-bottom:1px solid #0d1218
+}
+
+#app-header-title{
+	/* padding:15px 0 10px 0; */
+	padding:8px 0 8px 0px;
+	color:#fff;
+	font-size:11px;
+	font-weight:bold
+}
+
+#app-header-logo{
+	width:30px;
+	height:28px;
+	background:url(../images/logo.gif) no-repeat center 6px
+}
+
+/* Clear Button */
+.ext-ux-clearbutton {
+    width: 12px;
+    height: 12px;
+    background-image: url(./images/clear-text-icon.gif);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    -moz-user-focus: ignore; /* https://developer.mozilla.org/en/CSS/-moz-user-focus */
+    cursor: pointer;
+    position: absolute;
+    overflow:  hidden; /* IE 6 :-( */
+    margin-top: 4px;
+    background-color: white;
+}
+
+.ext-ux-clearbutton-mouse-over-input {
+    background-position: 0 -12px;
+}
+
+.ext-ux-clearbutton-mouse-over-button {
+    background-position: 0 -24px;
+}
+
+.ext-ux-clearbutton-mouse-down {
+    background-position: 0 -36px;
+}
+
+.ext-ux-clearbutton-on {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .35s linear;
+    -webkit-transition: opacity .35s linear;
+    -moz-transition: opacity .35s linear;
+    -o-transition: opacity .35s linear;
+    -ms-transition: opacity .35s linear;
+    -khtml-transition: opacity .35s linear;
+}
+
+.ext-ux-clearbutton-off {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s linear, visibility .0s linear .35s;
+    -webkit-transition: opacity .35s linear, visibility .0s linear .35s;
+    -moz-transition: opacity .35s linear, visibility .0s linear .35s;
+    -o-transition: opacity .35s linear, visibility .0s linear .35s;
+    -ms-transition: opacity .35s linear, visibility .0s linear .35s;
+    -khtml-transition: opacity .35s linear, visibility .0s linear .35s;
+}
+
+/* add Button */
+.ext-ux-clearbutton {
+    width: 12px;
+    height: 12px;
+    background-image: url(./images/clear-text-icon.gif);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    -moz-user-focus: ignore; /* https://developer.mozilla.org/en/CSS/-moz-user-focus */
+    cursor: pointer;
+    position: absolute;
+    overflow:  hidden; /* IE 6 :-( */
+    margin-top: 4px;
+    background-color: white;
+}
+
+.ext-ux-clearbutton-mouse-over-input {
+    background-position: 0 -12px;
+}
+
+.ext-ux-clearbutton-mouse-over-button {
+    background-position: 0 -24px;
+}
+
+.ext-ux-clearbutton-mouse-down {
+    background-position: 0 -36px;
+}
+
+.ext-ux-clearbutton-on {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .35s linear;
+    -webkit-transition: opacity .35s linear;
+    -moz-transition: opacity .35s linear;
+    -o-transition: opacity .35s linear;
+    -ms-transition: opacity .35s linear;
+    -khtml-transition: opacity .35s linear;
+}
+
+.ext-ux-clearbutton-off {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s linear, visibility .0s linear .35s;
+    -webkit-transition: opacity .35s linear, visibility .0s linear .35s;
+    -moz-transition: opacity .35s linear, visibility .0s linear .35s;
+    -o-transition: opacity .35s linear, visibility .0s linear .35s;
+    -ms-transition: opacity .35s linear, visibility .0s linear .35s;
+    -khtml-transition: opacity .35s linear, visibility .0s linear .35s;
+}
+
+/* pickup controller */
+
+.x-form-add-trigger:before {
+    font-family: FontAwesome;
+    content: "\f234" !important;
+}
+.x-form-edit-trigger:before {
+    font-family: FontAwesome;
+    content: "\f044" !important;
+}
+.x-form-add-trigger {
+    font-size: 16px;
+    font-family: FontAwesome;
+}
+.x-form-edit-trigger {
+    font-size: 16px;
+    font-family: FontAwesome;
+}

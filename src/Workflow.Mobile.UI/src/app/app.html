@@ -1,0 +1,14 @@
+<ion-menu [content]="content" color="primary">
+  <ion-content class="content-style">
+    <ion-item style="height: 5%; border: none" color="primary"></ion-item>
+    <ion-item style="text-align: center; height: 18%;" color="gold"><img src="img/logo.png" /></ion-item>
+    <ion-item style="text-align: center; font-weight: bold" color="gold">{{user != null ? user.fullName: ''}}</ion-item>
+    <ion-item style="height: 55%;" color="gold"></ion-item>
+    <ion-list style="height: 10%;">
+      <button color="primary" style="text-align: center" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #content [root]="rootPage" color="primary"></ion-nav>

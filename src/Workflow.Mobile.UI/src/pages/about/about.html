@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Forms
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list *ngFor="let m of menus">
+        <ion-list-header>
+            {{m.text}}
+        </ion-list-header>
+        <ion-item *ngFor="let c of m.children" (click)="openNavDetailsPage(c)">
+            <h3>{{c.text}}</h3>
+        </ion-item>
+    </ion-list>
+</ion-content>

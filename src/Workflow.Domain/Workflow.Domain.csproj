@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2841867-8D8A-419A-80BB-D3DEE9864A3B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Workflow.Domain</RootNamespace>
+    <AssemblyName>Workflow.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataObject\Attributes\ReportAttribute.cs" />
+    <Compile Include="DataObject\AV\AvbItemDto.cs" />
+    <Compile Include="DataObject\AV\AvbItemTypeDto.cs" />
+    <Compile Include="DataObject\BPMDATA\Activities.cs" />
+    <Compile Include="DataObject\BPMDATA\RequestApplication.cs" />
+    <Compile Include="DataObject\Dashboard\TaskDto.cs" />
+    <Compile Include="DataObject\Dashboard\TaskQueryParameter.cs" />
+    <Compile Include="DataObject\DepartmentDto.cs" />
+    <Compile Include="DataObject\DepartmentRight\DepartmentRightDto.cs" />
+    <Compile Include="DataObject\DepartmentRight\DeptAccessRightDto.cs" />
+    <Compile Include="DataObject\DepartmentRight\DeptAccessRightParam.cs" />
+    <Compile Include="DataObject\DepartmentTree.cs" />
+    <Compile Include="DataObject\DtoBase.cs" />
+    <Compile Include="DataObject\EmployeeDto.cs" />
+    <Compile Include="DataObject\Employees\EmployeeQueryParameter.cs" />
+    <Compile Include="DataObject\Employee\Employee.cs" />
+    <Compile Include="DataObject\Employee\EmployeeApprover.cs" />
+    <Compile Include="DataObject\Errors\GeneralErrorMessage.cs" />
+    <Compile Include="DataObject\Errors\ModalStateErrorMessage.cs" />
+    <Compile Include="DataObject\FileUploadInfo.cs" />
+    <Compile Include="DataObject\GeneralLookupDto.cs" />
+    <Compile Include="DataObject\IT\ItemDto.cs" />
+    <Compile Include="DataObject\IT\ItemRoleDto.cs" />
+    <Compile Include="DataObject\IT\ItemTypeDto.cs" />
+    <Compile Include="DataObject\MenuDto.cs" />
+    <Compile Include="DataObject\MTF\CheckInView.cs" />
+    <Compile Include="DataObject\MTF\GraphView.cs" />
+    <Compile Include="DataObject\MTF\MsgView.cs" />
+    <Compile Include="DataObject\MTF\PatientQeueDto.cs" />
+    <Compile Include="DataObject\MTF\PatientRecordView.cs" />
+    <Compile Include="DataObject\MTF\PatientView.cs" />
+    <Compile Include="DataObject\MTF\PieView.cs" />
+    <Compile Include="DataObject\MWO\ItemView.cs" />
+    <Compile Include="DataObject\Notification\NotifyDataDto.cs" />
+    <Compile Include="DataObject\NotifyMessage.cs" />
+    <Compile Include="DataObject\ProcInstOverview\QueryParam.cs" />
+    <Compile Include="DataObject\QueryParameter.cs" />
+    <Compile Include="DataObject\Reports\ADMCPPProcInst.cs" />
+    <Compile Include="DataObject\Reports\ADMSRProcInst.cs" />
+    <Compile Include="DataObject\Reports\ATCFProcInst.cs" />
+    <Compile Include="DataObject\Reports\AVDRProcInst.cs" />
+    <Compile Include="DataObject\Reports\AVIRProcInst.cs" />
+    <Compile Include="DataObject\Reports\AVJProcInst.cs" />
+    <Compile Include="DataObject\Reports\BCJProcInst.cs" />
+    <Compile Include="DataObject\Reports\CCRProcInst.cs" />
+    <Compile Include="DataObject\Reports\EGMATTProcInst.cs" />
+    <Compile Include="DataObject\Reports\EGMIRProcInst.cs" />
+    <Compile Include="DataObject\Reports\EGMMRProcInst.cs" />
+    <Compile Include="DataObject\Reports\EOMBPProcInst.cs" />
+    <Compile Include="DataObject\Reports\EOMProcInst.cs" />
+    <Compile Include="DataObject\Reports\FADProcInst.cs" />
+    <Compile Include="DataObject\Reports\FATProcInst.cs" />
+    <Compile Include="DataObject\Reports\GenericForm.cs" />
+    <Compile Include="DataObject\Reports\GMUProcInst.cs" />
+    <Compile Include="DataObject\Reports\HGVRProcInst.cs" />
+    <Compile Include="DataObject\Reports\IAVAFProcInst.cs" />
+    <Compile Include="DataObject\Reports\IBRProcInst.cs" />
+    <Compile Include="DataObject\Reports\ITCRProcInst.cs" />
+    <Compile Include="DataObject\Reports\ITIRFProcInst.cs" />
+    <Compile Include="DataObject\Reports\ITProcInst.cs" />
+    <Compile Include="DataObject\Reports\ITSWDProcInst.cs" />
+    <Compile Include="DataObject\Reports\JRAMProcInst.cs" />
+    <Compile Include="DataObject\Reports\MTProcInst.cs" />
+    <Compile Include="DataObject\Reports\N2WMOProcInst.cs" />
+    <Compile Include="DataObject\Reports\OSHAProcInst.cs" />
+    <Compile Include="DataObject\Reports\PBFProcInst.cs" />
+    <Compile Include="DataObject\Reports\ProcInst.cs" />
+    <Compile Include="DataObject\Reports\RACProcInst.cs" />
+    <Compile Include="DataObject\Reports\ReportServer.cs" />
+    <Compile Include="DataObject\Reports\RMDProcInst.cs" />
+    <Compile Include="DataObject\Reports\RSVNCRProcInst.cs" />
+    <Compile Include="DataObject\Reports\RSVNFFProcInst.cs" />
+    <Compile Include="DataObject\Reports\TASCRProcInst.cs" />
+    <Compile Include="DataObject\Reports\VRProcInst.cs" />
+    <Compile Include="DataObject\Reports\WMOProcInst.cs" />
+    <Compile Include="DataObject\Reservation\OccupancyDto.cs" />
+    <Compile Include="DataObject\ResourceWrapper.cs" />
+    <Compile Include="DataObject\ResponseText.cs" />
+    <Compile Include="DataObject\RoleRights\ActivityDto.cs" />
+    <Compile Include="DataObject\RoleRights\ActivityRightDto.cs" />
+    <Compile Include="DataObject\RoleRights\FormDto.cs" />
+    <Compile Include="DataObject\RoleRights\RoleDto.cs" />
+    <Compile Include="DataObject\RoleRights\UserQueryParameter.cs" />
+    <Compile Include="DataObject\RoleRights\UserRightDto.cs" />
+    <Compile Include="DataObject\Roles\TreeItemDto.cs" />
+    <Compile Include="DataObject\Roles\UserRoleDto.cs" />
+    <Compile Include="DataObject\Roles\WorkflowRoleDto.cs" />
+    <Compile Include="DataObject\Scheduler\EmpNoDeptDto.cs" />
+    <Compile Include="DataObject\Scheduler\FormLongPending.cs" />
+    <Compile Include="DataObject\Security\PreviewControl.cs" />
+    <Compile Include="DataObject\ServiceResponseMsg.cs" />
+    <Compile Include="DataObject\SortQueryParameter.cs" />
+    <Compile Include="DataObject\SO\ActivityInstanceAuditDto.cs" />
+    <Compile Include="DataObject\SO\ActivityInstanceDto.cs" />
+    <Compile Include="DataObject\SO\UserPerformanceDto.cs" />
+    <Compile Include="DataObject\Ticketing\ITicketParams.cs" />
+    <Compile Include="DataObject\Ticket\AbstractActivityViewDto.cs" />
+    <Compile Include="DataObject\Ticket\ActionDto.cs" />
+    <Compile Include="DataObject\Ticket\ActivityDto.cs" />
+    <Compile Include="DataObject\Ticket\AgentAssignListDto.cs" />
+    <Compile Include="DataObject\Ticket\AgentInfo.cs" />
+    <Compile Include="DataObject\Ticket\AssigneeDto.cs" />
+    <Compile Include="DataObject\Ticket\AssingnedActivityViewDto.cs" />
+    <Compile Include="DataObject\Ticket\FormIntegratedDto.cs" />
+    <Compile Include="DataObject\Ticket\GroupPolicyAssignTeamListDto.cs" />
+    <Compile Include="DataObject\Ticket\HierarchyDashB.cs" />
+    <Compile Include="DataObject\Ticket\NotifyActivityDataDto.cs" />
+    <Compile Include="DataObject\Ticket\QueryResult.cs" />
+    <Compile Include="DataObject\Ticket\SimpleActivityViewDto.cs" />
+    <Compile Include="DataObject\Ticket\SortParamsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketActivityMessage.cs" />
+    <Compile Include="DataObject\Ticket\TicketAgentDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketAgentTeamsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketAssignInfo.cs" />
+    <Compile Include="DataObject\Ticket\TicketCategoryDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketDepartmentDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketGroupPolicyDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketGroupPolicyTeamsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketingDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketingExportParamsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketingLookupParamsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketingSearchParamsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketItemDashboard.cs" />
+    <Compile Include="DataObject\Ticket\TicketItemDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketListing.cs" />
+    <Compile Include="DataObject\Ticket\TicketMergeStatusDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketNoneReqEmpDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketPriorityDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketSettingCriteria.cs" />
+    <Compile Include="DataObject\Ticket\TicketSlaDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketSlaMappingDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketSubCategoryDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketTeamAgentsDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketTeamDto.cs" />
+    <Compile Include="DataObject\Ticket\TicketUploadFile.cs" />
+    <Compile Include="DataObject\Ticket\TicketViewDto.cs" />
+    <Compile Include="DataObject\Ticket\TKNotifyDto.cs" />
+    <Compile Include="DataObject\WM\WLItemDto.cs" />
+    <Compile Include="DataObject\WM\WMQueryParameter.cs" />
+    <Compile Include="DataObject\Worklists\ActivityDto.cs" />
+    <Compile Include="DataObject\Worklists\InstanceAuditDto.cs" />
+    <Compile Include="DataObject\Worklists\ProcessDto.cs" />
+    <Compile Include="DataObject\Worklists\WlCriteriaDto.cs" />
+    <Compile Include="DataObject\Worklists\WorkflowDto.cs" />
+    <Compile Include="DataObject\Worklists\WorklistDto.cs" />
+    <Compile Include="DataObject\Worklists\WorklistItemDto.cs" />
+    <Compile Include="Forms\AMDCPPForm\AMDCPP.cs" />
+    <Compile Include="Entities\Application\Navigation.cs" />
+    <Compile Include="DataObject\EmailAccount.cs" />
+    <Compile Include="Forms\ATCF\AdditionalTimeWorked.cs" />
+    <Compile Include="Document\Document.cs" />
+    <Compile Include="Document\TravelDetail.cs" />
+    <Compile Include="Document\ProjectBrief.cs" />
+    <Compile Include="Document\Requisition.cs" />
+    <Compile Include="Document\Complimentary.cs" />
+    <Compile Include="Document\UploadFile.cs" />
+    <Compile Include="Forms\AV\AbvJobHistory.cs" />
+    <Compile Include="Forms\AV\AvbItem.cs" />
+    <Compile Include="Forms\AV\AvbItemType.cs" />
+    <Compile Include="Forms\AV\AvbRequestItem.cs" />
+    <Compile Include="Forms\AV\AvbUploadFile.cs" />
+    <Compile Include="Base\AbstractBaseEntity.cs" />
+    <Compile Include="Base\AbstractEntityLevel2.cs" />
+    <Compile Include="Forms\BCJ\BcjAttachment.cs" />
+    <Compile Include="Forms\BCJ\CapexCategory.cs" />
+    <Compile Include="Forms\BCJ\ProjectDetail.cs" />
+    <Compile Include="Forms\BCJ\AnalysisItem.cs" />
+    <Compile Include="Forms\BCJ\BcjRequestItem.cs" />
+    <Compile Include="Forms\BCJ\PurchaseOrder.cs" />
+    <Compile Include="Entities\Profiler.cs" />
+    <Compile Include="Forms\CCR\ContractDraft.cs" />
+    <Compile Include="Entities\Document.cs" />
+    <Compile Include="Entities\Document\AttachementView.cs" />
+    <Compile Include="Entities\Document\FileAttachement.cs" />
+    <Compile Include="Entities\ActivityHistory.cs" />
+    <Compile Include="Entities\ApprovalComment.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Core\Avir.cs" />
+    <Compile Include="Entities\Core\BpmUserRole.cs" />
+    <Compile Include="Entities\Core\EmployeeView.cs" />
+    <Compile Include="Entities\Document\FileTemp.cs" />
+    <Compile Include="Entities\Core\Avdr.cs" />
+    <Compile Include="Forms\ITApp\ItappProjectApproval.cs" />
+    <Compile Include="Forms\ITApp\ItappProjectDev.cs" />
+    <Compile Include="Forms\ITApp\ItappProjectInit.cs" />
+    <Compile Include="Entities\Document\FileContent.cs" />
+    <Compile Include="Entities\Document\FileUpload.cs" />
+    <Compile Include="Forms\EGM\Attandance.cs" />
+    <Compile Include="Forms\EGM\AttandanceAttachment.cs" />
+    <Compile Include="Forms\EGM\AttandanceDetailType.cs" />
+    <Compile Include="Forms\EGM\Machine.cs" />
+    <Compile Include="Forms\EGM\MachineAttachment.cs" />
+    <Compile Include="Forms\EGM\MachineEmployee.cs" />
+    <Compile Include="Entities\Email\MailAttachments.cs" />
+    <Compile Include="Entities\Email\MailList.cs" />
+    <Compile Include="Entities\Email\FileAttachement.cs" />
+    <Compile Include="Forms\EGM\MachineIssueType.cs" />
+    <Compile Include="Entities\Email\EmailItem.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Forms\EOM\EOMUploadFile.cs" />
+    <Compile Include="Forms\EOM\EOM.cs" />
+    <Compile Include="Forms\Finance\AssetDisposal.cs" />
+    <Compile Include="Forms\Finance\AssetControlDetail.cs" />
+    <Compile Include="Forms\Finance\AssetTransfer.cs" />
+    <Compile Include="Forms\Finance\AssetDisposalDetail.cs" />
+    <Compile Include="Forms\Finance\AssetTransferDetail.cs" />
+    <Compile Include="Forms\EOMBP\BestPerformance.cs" />
+    <Compile Include="Forms\EOMBP\BestPerformanceDetail.cs" />
+    <Compile Include="Forms\GMU\GmuRamClear.cs" />
+    <Compile Include="Forms\HGVR\VoucherHotelFinance.cs" />
+    <Compile Include="Forms\HGVR\VoucherHotelDetail.cs" />
+    <Compile Include="Forms\HGVR\VoucherHotel.cs" />
+    <Compile Include="Forms\JRAM\RamClear.cs" />
+    <Compile Include="Forms\TASCR\CourseRegistration.cs" />
+    <Compile Include="Forms\TASCR\CourseEmployee.cs" />
+    <Compile Include="Forms\HR\FlightDetail.cs" />
+    <Compile Include="Forms\HR\Destination.cs" />
+    <Compile Include="Forms\HR\TravelDetail.cs" />
+    <Compile Include="Forms\HumanResource\Requisition.cs" />
+    <Compile Include="Forms\INCIDENT\IncidentAttachement.cs" />
+    <Compile Include="Forms\INCIDENT\IncidentEmployee.cs" />
+    <Compile Include="Forms\INCIDENT\Incident.cs" />
+    <Compile Include="Forms\IRF\IRFRequestItem.cs" />
+    <Compile Include="Forms\IRF\IRFVendor.cs" />
+    <Compile Include="Forms\ITCR\RequestFormData.cs" />
+    <Compile Include="Forms\ITAD\ITADEmployee.cs" />
+    <Compile Include="Forms\ITEIRQ\EventInternet.cs" />
+    <Compile Include="Forms\ITEIRQ\Quotation.cs" />
+    <Compile Include="Forms\IT\Item.cs" />
+    <Compile Include="Forms\IT\ItemRole.cs" />
+    <Compile Include="Forms\IT\ItemType.cs" />
+    <Compile Include="Forms\IT\ItRequestFiles.cs" />
+    <Compile Include="Forms\IT\ItUploadFile.cs" />
+    <Compile Include="Forms\IT\RequestItem.cs" />
+    <Compile Include="Entities\Core\Activity.cs" />
+    <Compile Include="Entities\Core\ActivityRoleRight.cs" />
+    <Compile Include="Entities\Core\AdGroup.cs" />
+    <Compile Include="Entities\Core\AssetCategory.cs" />
+    <Compile Include="Entities\Core\BackupEmployee.cs" />
+    <Compile Include="Entities\Core\BaseEntity.cs" />
+    <Compile Include="Entities\Core\CheckPoint.cs" />
+    <Compile Include="Entities\Core\Department.cs" />
+    <Compile Include="Entities\Core\DeptAccessRight.cs" />
+    <Compile Include="Entities\Core\DeptApprovalRole.cs" />
+    <Compile Include="Entities\Core\DeptGroupApproval.cs" />
+    <Compile Include="Entities\Core\DeptHistory.cs" />
+    <Compile Include="Entities\Core\ErrorLog.cs" />
+    <Compile Include="Entities\Core\Escalation.cs" />
+    <Compile Include="Entities\Core\ExpenseAccount.cs" />
+    <Compile Include="Entities\Core\ExpenseClaimHeader.cs" />
+    <Compile Include="Entities\Core\ExpenseClaimItemDetail.cs" />
+    <Compile Include="Entities\Core\FixDept.cs" />
+    <Compile Include="Entities\Core\MtfFyiRole.cs" />
+    <Compile Include="Entities\Core\NotificationUserSession.cs" />
+    <Compile Include="Entities\Core\RequestApplication.cs" />
+    <Compile Include="Entities\Core\RequestEmployee.cs" />
+    <Compile Include="Entities\Core\RequestExported.cs" />
+    <Compile Include="Entities\Core\Rihgt.cs" />
+    <Compile Include="Entities\Core\Role.cs" />
+    <Compile Include="Entities\Core\RoleRight.cs" />
+    <Compile Include="Entities\Core\SpMenu.cs" />
+    <Compile Include="Entities\Core\UserRole.cs" />
+    <Compile Include="Entities\Core\WorkflowRight.cs" />
+    <Compile Include="Entities\Core\WorkflowRole.cs" />
+    <Compile Include="Forms\IT\Session.cs" />
+    <Compile Include="Entities\Application\RequestApplication.cs" />
+    <Compile Include="Entities\ActivityConfig.cs" />
+    <Compile Include="Entities\Lookup.cs" />
+    <Compile Include="Forms\MTF\Medicine.cs" />
+    <Compile Include="Forms\MTF\QeuePatient.cs" />
+    <Compile Include="Forms\MTF\Prescription.cs" />
+    <Compile Include="Forms\MTF\Treatment.cs" />
+    <Compile Include="Forms\MTF\UnfitToWork.cs" />
+    <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Forms\N2MWO\DepartmentChargable.cs" />
+    <Compile Include="Forms\N2MWO\Information.cs" />
+    <Compile Include="Forms\N2MWO\MaintenanceDepartment.cs" />
+    <Compile Include="Forms\N2MWO\Mode.cs" />
+    <Compile Include="Forms\N2MWO\RequestInformation.cs" />
+    <Compile Include="Forms\N2MWO\RequestType.cs" />
+    <Compile Include="Forms\N2MWO\WorkType.cs" />
+    <Compile Include="Forms\MWO\DepartmentChargable.cs" />
+    <Compile Include="Forms\MWO\Information.cs" />
+    <Compile Include="Forms\MWO\MaintenanceDepartment.cs" />
+    <Compile Include="Forms\MWO\RequestInformation.cs" />
+    <Compile Include="Forms\MWO\WorkType.cs" />
+    <Compile Include="Forms\MWO\RequestType.cs" />
+    <Compile Include="Forms\MWO\Mode.cs" />
+    <Compile Include="Forms\OSHA\Employee.cs" />
+    <Compile Include="Forms\OSHA\Information.cs" />
+    <Compile Include="Forms\PBF\ProjectBrief.cs" />
+    <Compile Include="Forms\PBF\Specification.cs" />
+    <Compile Include="Queue\FingerPrint.cs" />
+    <Compile Include="Queue\FingerPrintMachine.cs" />
+    <Compile Include="Forms\RAC\AccessCard.cs" />
+    <Compile Include="Entities\RequestHeader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\RequestUser.cs" />
+    <Compile Include="Entities\RequestUserExt.cs" />
+    <Compile Include="Forms\Reservation\Complimentary.cs" />
+    <Compile Include="Forms\Reservation\ComplimentaryCheckItemLS.cs" />
+    <Compile Include="Forms\Reservation\ComplimentaryCheckItemExt.cs" />
+    <Compile Include="Forms\Reservation\ComplimentaryCheckItem.cs" />
+    <Compile Include="Forms\Reservation\ComplimentaryItem.cs" />
+    <Compile Include="Forms\Reservation\Guest.cs" />
+    <Compile Include="Forms\Reservation\ReservationAttachment.cs" />
+    <Compile Include="Forms\Reservation\RoomCategory.cs" />
+    <Compile Include="Forms\Reservation\Booking.cs" />
+    <Compile Include="Forms\RMD\RiskAssessment.cs" />
+    <Compile Include="Forms\RMD\Worksheet3.cs" />
+    <Compile Include="Forms\RMD\Worksheet2.cs" />
+    <Compile Include="Forms\RMD\Worksheet1.cs" />
+    <Compile Include="Entities\Security\UserAuth.cs" />
+    <Compile Include="Ticket\TicketFormIntegrated.cs" />
+    <Compile Include="Ticket\TicketGroupPolicyReportAssign.cs" />
+    <Compile Include="Ticket\TicketNoneReqEmp.cs" />
+    <Compile Include="Ticket\TicketNotification.cs" />
+    <Compile Include="Ticket\TicketSLAMapping.cs" />
+    <Compile Include="Ticket\TicketSubTkLink.cs" />
+    <Compile Include="Ticket\Ticket.cs" />
+    <Compile Include="Ticket\TicketAction.cs" />
+    <Compile Include="Ticket\TicketActivity.cs" />
+    <Compile Include="Ticket\TicketAssignment.cs" />
+    <Compile Include="Ticket\TicketChangeActivity.cs" />
+    <Compile Include="Ticket\TicketFileAttachment.cs" />
+    <Compile Include="Ticket\TicketFileUpload.cs" />
+    <Compile Include="Ticket\TicketGroupPolicy.cs" />
+    <Compile Include="Ticket\TicketMerged.cs" />
+    <Compile Include="Ticket\TicketRouting.cs" />
+    <Compile Include="Ticket\TicketRouteStatus.cs" />
+    <Compile Include="Entities\Scheduler\Recipient.cs" />
+    <Compile Include="Entities\Scheduler\EmailContent.cs" />
+    <Compile Include="Entities\Scheduler\Job.cs" />
+    <Compile Include="Entities\Core\TransactionHistory.cs" />
+    <Compile Include="Ticket\TicketSLA.cs" />
+    <Compile Include="Ticket\TicketState.cs" />
+    <Compile Include="Ticket\TicketSubCategory.cs" />
+    <Compile Include="Ticket\TicketAgent.cs" />
+    <Compile Include="Ticket\TicketCategory.cs" />
+    <Compile Include="Ticket\TicketDepartment.cs" />
+    <Compile Include="Ticket\TicketImpact.cs" />
+    <Compile Include="Ticket\TicketItem.cs" />
+    <Compile Include="Ticket\TicketPriority.cs" />
+    <Compile Include="Ticket\TicketSite.cs" />
+    <Compile Include="Ticket\TicketSource.cs" />
+    <Compile Include="Ticket\TicketStatus.cs" />
+    <Compile Include="Ticket\TicketTeam.cs" />
+    <Compile Include="Ticket\TicketGroupPolicyTeamAssign.cs" />
+    <Compile Include="Ticket\TicketTeamAgentAssign.cs" />
+    <Compile Include="Ticket\TicketType.cs" />
+    <Compile Include="Ticket\TicketUrgency.cs" />
+    <Compile Include="Forms\Admsr\AdmsrInformation.cs" />
+    <Compile Include="Forms\Admsr\AdmsrCompany.cs" />
+    <Compile Include="Forms\VAF\Information.cs" />
+    <Compile Include="Forms\VAF\Outline.cs" />
+    <Compile Include="Forms\VoucherRequest\RequestData.cs" />
+    <Compile Include="BatchData\AbstractWorkflowInstance.cs" />
+    <Compile Include="BatchData\HGVRRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\GMURequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\IRFWorkflowInstance.cs" />
+    <Compile Include="BatchData\JRAMRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\RMDRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ITCRRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ITEIRQRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ITADRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\AdmsrRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\N2MwoRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\OSHARequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\TASRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\FADRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ATCFRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\EOMBPRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ITAppWorkflowInstance.cs" />
+    <Compile Include="BatchData\ATTRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\AvirFormWorkflowInstance.cs" />
+    <Compile Include="BatchData\AvdrFormWorkflowInstance.cs" />
+    <Compile Include="BatchData\EOMRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ATDRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\MCNRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ICDRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\FATRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\MTFRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\AdmCppRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\PBFRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ERFRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\MwoRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\CRRRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\FnFRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\BcjRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\AvbRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\ItRequestWorkflowInstance.cs" />
+    <Compile Include="BatchData\CCRWorkflowInstance.cs" />
+    <Compile Include="BatchData\RACWorkflowInstance.cs" />
+    <Compile Include="BatchData\AdmsrWorkflowInstance.cs" />
+    <Compile Include="BatchData\VRWorkflowInstance.cs" />
+    <Compile Include="BatchData\VAFWorkflowInstance.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Workflow.Core\Workflow.Core.csproj">
+      <Project>{c885b24f-052b-465f-ba0c-18db3db56616}</Project>
+      <Name>Workflow.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

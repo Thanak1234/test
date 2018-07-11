@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C1BBD1E-118D-424C-B81F-0D5783378CCB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Workflow.Service</RootNamespace>
+    <AssemblyName>Workflow.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Handlebars, Version=1.0.0.0, Culture=neutral, PublicKeyToken=22225d0bf33cd661, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Handlebars.Net.1.7.1\lib\Handlebars.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\AbstractRequestFormService.cs" />
+    <Compile Include="Base\ActivityService.cs" />
+    <Compile Include="Admin\ApplicationService.cs" />
+    <Compile Include="Form\HGVRRequestFormService.cs" />
+    <Compile Include="Form\GMURequestFormService.cs" />
+    <Compile Include="Form\JRAMRequestFormService.cs" />
+    <Compile Include="Form\RMDRequestFormService.cs" />
+    <Compile Include="Form\ITEIRQRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IHGVRRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IGMURequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IJRAMRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IRMDRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IITEIRQRequestFormService.cs" />
+    <Compile Include="Interfaces\IITCRRequestFormService.cs" />
+    <Compile Include="Interfaces\IITADRequestFormService.cs" />
+    <Compile Include="Interfaces\IITIRFRequestFormService.cs" />
+    <Compile Include="Interfaces\IN2MwoRequestFormService.cs" />
+    <Compile Include="Form\ITCRRequestFormService.cs" />
+    <Compile Include="Form\ITADRequestFormService.cs" />
+    <Compile Include="Form\ATDRequestFormService.cs" />
+    <Compile Include="Base\IServices.cs" />
+    <Compile Include="Base\Services.cs" />
+    <Compile Include="Form\ATCFRequestFormService.cs" />
+    <Compile Include="Form\TASRequestFormService.cs" />
+    <Compile Include="Form\EOMBPRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IATCFRequestFormService.cs" />
+    <Compile Include="Interfaces\IAdmsrRequestFormService.cs" />
+    <Compile Include="Interfaces\IOSHARequestFormService.cs" />
+    <Compile Include="Interfaces\IRACRequestFormService.cs" />
+    <Compile Include="Form\AdmsrRequestFormService.cs" />
+    <Compile Include="Form\ITIRFRequestFormService.cs" />
+    <Compile Include="Form\N2MwoRequestFormService.cs" />
+    <Compile Include="Form\OSHARequestFormService.cs" />
+    <Compile Include="Form\RACRequestFormService.cs" />
+    <Compile Include="Security\DepartmentRightService.cs" />
+    <Compile Include="FileUpload\DocumentService.cs" />
+    <Compile Include="FileUpload\AttachementService.cs" />
+    <Compile Include="Form\ATTRequestFormService.cs" />
+    <Compile Include="Form\AdmCppRequestFormService.cs" />
+    <Compile Include="Form\FATRequestFormService.cs" />
+    <Compile Include="Form\FADRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IFATRequestFormService.cs" />
+    <Compile Include="Interfaces\Form\IFADRequestFormService.cs" />
+    <Compile Include="Interfaces\IActivityService.cs" />
+    <Compile Include="Interfaces\IFingerprintService.cs" />
+    <Compile Include="Interfaces\ICCRRequestFormService.cs" />
+    <Compile Include="Interfaces\IVRRequestFormService.cs" />
+    <Compile Include="Interfaces\IVAFormService.cs" />
+    <Compile Include="Interfaces\IITAppFormService.cs" />
+    <Compile Include="Form\CCRRequestFormService.cs" />
+    <Compile Include="Form\VRRequestFormService.cs" />
+    <Compile Include="Form\VAFormService.cs" />
+    <Compile Include="Form\ITAppFormService.cs" />
+    <Compile Include="Form\EOMRequestFormService.cs" />
+    <Compile Include="Form\AvbRequestFormService.cs" />
+    <Compile Include="Form\AvirFormService.cs" />
+    <Compile Include="Form\BcjRequestContentService.cs" />
+    <Compile Include="FileUpload\FileUploadService.cs" />
+    <Compile Include="FileUpload\IFileUploadService.cs" />
+    <Compile Include="Form\ICDRequestFormService.cs" />
+    <Compile Include="Interfaces\Admin\IApplicationService.cs" />
+    <Compile Include="Interfaces\IAdmCppRequestFormService.cs" />
+    <Compile Include="Interfaces\IDepartmentRightService.cs" />
+    <Compile Include="Interfaces\IDocumentService.cs" />
+    <Compile Include="Interfaces\IEOMRequestFormService.cs" />
+    <Compile Include="Interfaces\IATDRequestFormService.cs" />
+    <Compile Include="Interfaces\IBcjRequestContentService.cs" />
+    <Compile Include="Interfaces\IATTRequestFormService.cs" />
+    <Compile Include="Interfaces\IAvirFormService.cs" />
+    <Compile Include="Interfaces\IAvdrFormService.cs" />
+    <Compile Include="Interfaces\IICDFormService.cs" />
+    <Compile Include="Interfaces\IMCNFormService.cs" />
+    <Compile Include="Interfaces\IMTFRequestFormService.cs" />
+    <Compile Include="Interfaces\IPBFRequestFormService.cs" />
+    <Compile Include="Interfaces\IRequestApplicationService.cs" />
+    <Compile Include="Form\AvdrFormService.cs" />
+    <Compile Include="Interfaces\ISchedulerService.cs" />
+    <Compile Include="Interfaces\Notification\INotificationService.cs" />
+    <Compile Include="Interfaces\ticketing\ITicketLookupService.cs" />
+    <Compile Include="Interfaces\ticketing\ITicketService.cs" />
+    <Compile Include="Form\MCNRequestFormService.cs" />
+    <Compile Include="Form\MTFRequestFormService.cs" />
+    <Compile Include="Ticketing\NotificationService.cs" />
+    <Compile Include="Form\PBFRequestFormService.cs" />
+    <Compile Include="Form\ERFRequestFormService.cs" />
+    <Compile Include="Form\CRRRequestFormService.cs" />
+    <Compile Include="Form\FnFRequestFormService.cs" />
+    <Compile Include="Form\BcjRequestFormService.cs" />
+    <Compile Include="DashboardService.cs" />
+    <Compile Include="EmployeeService.cs" />
+    <Compile Include="Interfaces\IAttachmentService.cs" />
+    <Compile Include="Interfaces\IAvbRequestFormService.cs" />
+    <Compile Include="Interfaces\IERFRequestFormService.cs" />
+    <Compile Include="Interfaces\ICRRRequestFormService.cs" />
+    <Compile Include="Interfaces\IFnFRequestFormService.cs" />
+    <Compile Include="Interfaces\IBcjRequestFormService.cs" />
+    <Compile Include="Interfaces\IDashboardService.cs" />
+    <Compile Include="Interfaces\IEmployeeService.cs" />
+    <Compile Include="Interfaces\IItRequestFormService.cs" />
+    <Compile Include="Interfaces\ILookupService.cs" />
+    <Compile Include="Interfaces\IMwoRequestFormService.cs" />
+    <Compile Include="Interfaces\IRequestFormService.cs" />
+    <Compile Include="Interfaces\IRequestHeaderService.cs" />
+    <Compile Include="Interfaces\IRoleRightService.cs" />
+    <Compile Include="Interfaces\IRoleService.cs" />
+    <Compile Include="Interfaces\IWorklistService.cs" />
+    <Compile Include="Form\ItRequestFormService.cs" />
+    <Compile Include="LookupService.cs" />
+    <Compile Include="Form\MwoRequestFormService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestHeaderService.cs" />
+    <Compile Include="RequestApplicationService.cs" />
+    <Compile Include="Security\RoleRightService.cs" />
+    <Compile Include="Security\RoleService.cs" />
+    <Compile Include="Security\PreviewService.cs" />
+    <Compile Include="Base\ServiceBase.cs" />
+    <Compile Include="SchedulerService.cs" />
+    <Compile Include="Ticketing\AbstractTicketIntegrated.cs" />
+    <Compile Include="Ticketing\ActivityMessageHandler.cs" />
+    <Compile Include="Ticketing\EFormIntegrated.cs" />
+    <Compile Include="Ticketing\IDataParser.cs" />
+    <Compile Include="Ticketing\ITicketCreationMail.cs" />
+    <Compile Include="Ticketing\ITicketEnquiry.cs" />
+    <Compile Include="Ticketing\ITicketIntegrated.cs" />
+    <Compile Include="Ticketing\ITicketMessaging.cs" />
+    <Compile Include="Ticketing\K2ActionHandlers.cs" />
+    <Compile Include="Ticketing\TicketActivityDataParser.cs" />
+    <Compile Include="Ticketing\TicketBackgroundProcess.cs" />
+    <Compile Include="Ticketing\MailEntegrated.cs" />
+    <Compile Include="Ticketing\TicketDataParser.cs" />
+    <Compile Include="Ticketing\TicketDataProcessingProvider.cs" />
+    <Compile Include="Ticketing\TicketLookupService.cs" />
+    <Compile Include="Ticketing\TicketNotifyHander.cs" />
+    <Compile Include="Ticketing\TicketService.cs" />
+    <Compile Include="FingerprintService.cs" />
+    <Compile Include="WorklistService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Workflow.Business.Ticketing\Workflow.Business.Ticketing.csproj">
+      <Project>{442182e7-aef7-4e6b-8858-b1ce8035c2bb}</Project>
+      <Name>Workflow.Business.Ticketing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Business\Workflow.Business.csproj">
+      <Project>{16e6a55c-9d5a-42a7-908f-bcc536fe8066}</Project>
+      <Name>Workflow.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Core\Workflow.Core.csproj">
+      <Project>{c885b24f-052b-465f-ba0c-18db3db56616}</Project>
+      <Name>Workflow.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.DataAcess\Workflow.DataAcess.csproj">
+      <Project>{9461fab5-9d21-4566-9c6e-4587b814982a}</Project>
+      <Name>Workflow.DataAcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Domain\Workflow.Domain.csproj">
+      <Project>{a2841867-8d8a-419a-80bb-d3dee9864a3b}</Project>
+      <Name>Workflow.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Framework\Workflow.Framework.csproj">
+      <Project>{E7C78513-504D-4834-802F-3B6C9B17C2A9}</Project>
+      <Name>Workflow.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.MSExchange\Workflow.MSExchange.csproj">
+      <Project>{90dee8ea-8f72-4a7f-8677-8d076049115c}</Project>
+      <Name>Workflow.MSExchange</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Diagram\Workflow.Diagram.csproj">
+      <Project>{411df289-fc6d-4659-8a88-4bf414b10a6d}</Project>
+      <Name>Workflow.Diagram</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

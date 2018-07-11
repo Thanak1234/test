@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9461FAB5-9D21-4566-9C6E-4587B814982A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Workflow.DataAcess</RootNamespace>
+    <AssemblyName>Workflow.DataAcess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NuGet.Client.BaseTypes, Version=0.1.0.0, Culture=neutral, PublicKeyToken=a54e26fdc1b81123, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NuGet.Client.BaseTypes.0.1.1\lib\net45\NuGet.Client.BaseTypes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NuGet.Versioning, Version=1.0.7.0, Culture=neutral, PublicKeyToken=2e465378e3b1a8dd, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NuGet.Versioning.1.0.7\lib\portable-net40+win\NuGet.Versioning.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PowerfulExtensions_4.5, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PowerfulExtensions.1.0.5\lib\net45\PowerfulExtensions_4.5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SourceCode.HostClientAPI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=x86">
+      <HintPath>..\..\lib\K2\SourceCode.HostClientAPI.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SourceCode.Security.UserRoleManager.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\K2\SourceCode.Security.UserRoleManager.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceCode.Security.UserRoleManager.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\K2\SourceCode.Security.UserRoleManager.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceCode.SmartObjects.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\K2\SourceCode.SmartObjects.Client.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SourceCode.Workflow.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=x86">
+      <HintPath>..\..\lib\K2\SourceCode.Workflow.Client.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SourceCode.Workflow.Management, Version=4.0.0.0, Culture=neutral, PublicKeyToken=16a2c5aaaa1b130d, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\K2\SourceCode.Workflow.Management.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\ApplicationUser.cs" />
+    <Compile Include="App\ApplicationUserManager.cs" />
+    <Compile Include="Configuration\ActivityConfiguration.cs" />
+    <Compile Include="Configuration\ActivityHistoryConfiguration.cs" />
+    <Compile Include="Configuration\ActivityRoleRightConfiguration.cs" />
+    <Compile Include="Configuration\AdGroupConfiguration.cs" />
+    <Compile Include="Configuration\ADMCPPForm\AMDCPPConfiguration.cs" />
+    <Compile Include="Configuration\ApprovalCommentConfiguration.cs" />
+    <Compile Include="Configuration\AssetCategoryConfiguration.cs" />
+    <Compile Include="Configuration\Attachment\DocumentConfiguration.cs" />
+    <Compile Include="Configuration\Attachment\TravelDetailConfiguration.cs" />
+    <Compile Include="Configuration\Attachment\ProjectBriefConfiguration.cs" />
+    <Compile Include="Configuration\Attachment\RequisitionConfiguration.cs" />
+    <Compile Include="Configuration\Attachment\ComplimentaryConfiguration.cs" />
+    <Compile Include="Configuration\AvirConfiguration.cs" />
+    <Compile Include="Configuration\Attachment\SimpleFileUploadConfiguration.cs" />
+    <Compile Include="Configuration\AV\AbvJobHistoryConfiguration.cs" />
+    <Compile Include="Configuration\AV\AvbItemConfiguraiton.cs" />
+    <Compile Include="Configuration\AV\AvbItemTypeConfiguration.cs" />
+    <Compile Include="Configuration\AV\AvbRequestItemConfiguration.cs" />
+    <Compile Include="Configuration\AV\AVJBRequestFilesConfiguration.cs" />
+    <Compile Include="Configuration\BackupEmployeeConfiguration.cs" />
+    <Compile Include="Configuration\Base\AbstractModelConfigurationLevel2.cs" />
+    <Compile Include="Configuration\Base\AttachmentTypeConfiguration.cs" />
+    <Compile Include="Configuration\Base\AbstractModelConfiguration.cs" />
+    <Compile Include="Configuration\BCJ\AnalysisItemConfiguration.cs" />
+    <Compile Include="Configuration\BCJ\AttachmentConfiguration.cs" />
+    <Compile Include="Configuration\BCJ\CapexCategoryConfiguration.cs" />
+    <Compile Include="Configuration\BCJ\ProjectDetailConfiguration.cs" />
+    <Compile Include="Configuration\BCJ\RequestItemConfiguration.cs" />
+    <Compile Include="Configuration\BPMDATA\UserRoleConfig.cs" />
+    <Compile Include="Configuration\CCR\ContractDraftConfiguration.cs" />
+    <Compile Include="Configuration\CheckPointConfiguration.cs" />
+    <Compile Include="Configuration\DepartmentConfiguration.cs" />
+    <Compile Include="Configuration\DeptAccessRightConfiguration.cs" />
+    <Compile Include="Configuration\DeptApprovalRoleConfiguration.cs" />
+    <Compile Include="Configuration\DeptGroupApprovalConfiguration.cs" />
+    <Compile Include="Configuration\DeptHistoryConfiguration.cs" />
+    <Compile Include="Configuration\AttachementConfiguration.cs" />
+    <Compile Include="Configuration\EGMAttandance\AttandanceAttachmentConfiguration.cs" />
+    <Compile Include="Configuration\EGMAttandance\AttandanceConfiguration.cs" />
+    <Compile Include="Configuration\EGMMachine\AttandanceDetailTypeConfiguration.cs" />
+    <Compile Include="Configuration\EGMMachine\MachineAttachmentConfiguration.cs" />
+    <Compile Include="Configuration\EGMMachine\MachineConfiguration.cs" />
+    <Compile Include="Configuration\EGMMachine\MachineEmployeeListConfiguration.cs" />
+    <Compile Include="Configuration\Email\MailListConfiguration.cs" />
+    <Compile Include="Configuration\Email\FileAttachementConfiguration.cs" />
+    <Compile Include="Configuration\EGMMachine\MachineIssueTypeConfiguration.cs" />
+    <Compile Include="Configuration\Email\EmailItemConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeConfiguration.cs" />
+    <Compile Include="Configuration\EmployeeViewConfiguration.cs" />
+    <Compile Include="Configuration\EOM\EOMConfiguration.cs" />
+    <Compile Include="Configuration\EOM\EOMUploadFileConfiguration.cs" />
+    <Compile Include="Configuration\EscalationConfiguration.cs" />
+    <Compile Include="Configuration\ExpenseAccountConfiguration.cs" />
+    <Compile Include="Configuration\ExpenseClaimHeaderConfiguration.cs" />
+    <Compile Include="Configuration\ExpenseClaimItemDetailConfiguration.cs" />
+    <Compile Include="Configuration\FixDeptConfiguration.cs" />
+    <Compile Include="Configuration\HumanResource\FlightDetailConfiguration.cs" />
+    <Compile Include="Configuration\HumanResource\DestinationConfiguration.cs" />
+    <Compile Include="Configuration\HumanResource\TravelDetailConfiguration.cs" />
+    <Compile Include="Configuration\HumanResource\RequisitionConfiguration.cs" />
+    <Compile Include="Configuration\Incident\EmployeeListConfiguration.cs" />
+    <Compile Include="Configuration\Incident\IncidentConfiguration.cs" />
+    <Compile Include="Configuration\Incident\IncidentRequestFileConfiguration.cs" />
+    <Compile Include="Configuration\IRF\IRFRequestItemConfiguration.cs" />
+    <Compile Include="Configuration\IRF\IRFVendorConfiguration.cs" />
+    <Compile Include="Configuration\ITCR\RequestFormDataConfiguration.cs" />
+    <Compile Include="Configuration\ITAD\ITADEmployeeConfiguration.cs" />
+    <Compile Include="Configuration\ITApp\ITAppProjectApprovalConfiguration.cs" />
+    <Compile Include="Configuration\ITApp\ITAppProjectDevConfiguration.cs" />
+    <Compile Include="Configuration\ITApp\ITAppProjectInitConfiguration.cs" />
+    <Compile Include="Configuration\IT\ItemConfiguration.cs" />
+    <Compile Include="Configuration\IT\ItemRoleConfiguration.cs" />
+    <Compile Include="Configuration\IT\ItemTypeConfiguration.cs" />
+    <Compile Include="Configuration\IT\ITRequestFilesConfiguration.cs" />
+    <Compile Include="Configuration\IT\RequestItemConfiguration.cs" />
+    <Compile Include="Configuration\IT\SessionConfiguration.cs" />
+    <Compile Include="Configuration\LookupConfiguration.cs" />
+    <Compile Include="Configuration\MenuConfiguration.cs" />
+    <Compile Include="Configuration\MtfFyiRoleConfiguration.cs" />
+    <Compile Include="Configuration\MWO\RequestInformationConfiguration.cs" />
+    <Compile Include="Configuration\MWO\DepartmentChargableConfiguration.cs" />
+    <Compile Include="Configuration\MWO\RequestTypeConfiguration.cs" />
+    <Compile Include="Configuration\MWO\MaintenanceDepartmentConfiguration.cs" />
+    <Compile Include="Configuration\MWO\InformationConfiguration.cs" />
+    <Compile Include="Configuration\MWO\WorkTypeConfiguration.cs" />
+    <Compile Include="Configuration\MWO\ModeConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\DepartmentChargableConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\InformationConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\MaintenanceDepartmentConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\ModeConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\RequestInformationConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\RequestTypeConfiguration.cs" />
+    <Compile Include="Configuration\N2MWO\WorkTypeConfiguration.cs" />
+    <Compile Include="Configuration\NotificationUserSessionConfiguration.cs" />
+    <Compile Include="Configuration\OSHA\EmployeeConfiguration.cs" />
+    <Compile Include="Configuration\OSHA\InformationConfiguration.cs" />
+    <Compile Include="Configuration\PBF\SpecificationConfiguration.cs" />
+    <Compile Include="Configuration\PBF\ProjectBriefConfiguration.cs" />
+    <Compile Include="Configuration\Queue\FingerPrintMachineConfiguration.cs" />
+    <Compile Include="Configuration\Queue\FingerPrintConfiguration.cs" />
+    <Compile Include="Configuration\RAC\AccessCardConfiguration.cs" />
+    <Compile Include="Configuration\RequestApplicationConfiguration.cs" />
+    <Compile Include="Configuration\RequestEmployeeConfiguration.cs" />
+    <Compile Include="Configuration\RequestExportedConfiguration.cs" />
+    <Compile Include="Configuration\RequestHeaderConfiguration.cs" />
+    <Compile Include="Configuration\IT\RequestUserConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\AttachmentConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\ComplimentaryCheckItemConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\ComplimentaryItemConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\GuestConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\ComplimentaryConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\RoomCategoryConfiguration.cs" />
+    <Compile Include="Configuration\Reservation\BookingConfiguration.cs" />
+    <Compile Include="Configuration\RihgtConfiguration.cs" />
+    <Compile Include="Configuration\RoleConfiguration.cs" />
+    <Compile Include="Configuration\RoleRightConfiguration.cs" />
+    <Compile Include="Configuration\Scheduler\EmailContentConfiguration.cs" />
+    <Compile Include="Configuration\Scheduler\JobConfiguration.cs" />
+    <Compile Include="Configuration\Scheduler\RecipientConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketActivityConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketAgentConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketAssignmentConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketCategoryConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketChangeActivityConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketDepartmentConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketFileUploadConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketFormIntegratedConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketGroupPolicyConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketGroupPolicyReportAssignConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketImpactConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketItemConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketMergedConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketNoneReqEmpConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketNotificationConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketPriorityConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketRoutingConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketSiteConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketSLAMappingConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketSLAConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketSourceConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketStatusConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketSubCategoryConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketGroupPolicyTeamAssignConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketSubTkLinkConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketTeamAgentAssignConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketTeamConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketTypeConfiguration.cs" />
+    <Compile Include="Configuration\Ticketing\TicketUrgencyConfiguration.cs" />
+    <Compile Include="Configuration\UserRoleConfiguration.cs" />
+    <Compile Include="Configuration\Admsr\AdmsrInformationConfiguration.cs" />
+    <Compile Include="Configuration\Admsr\AdmsrCompnayConfiguration.cs" />
+    <Compile Include="Configuration\VAF\InformationConfiguration.cs" />
+    <Compile Include="Configuration\VAF\OutlineConfiguration.cs" />
+    <Compile Include="Configuration\VoucherRequest\RequestDataConfiguration.cs" />
+    <Compile Include="Configuration\WorkflowRightConfiguration.cs" />
+    <Compile Include="Configuration\AvdrConfiguration.cs" />
+    <Compile Include="Configuration\WorkflowRoleConfiguration.cs" />
+    <Compile Include="DbContext\WorkflowDocContext.cs" />
+    <Compile Include="Infrastructure\DataReport.cs" />
+    <Compile Include="Infrastructure\DbContextSelector.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDataReport.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DbContext\WorkflowContext.cs" />
+    <Compile Include="Repositories\ActivityHistoryRepository.cs" />
+    <Compile Include="Repositories\ActivityRepository.cs" />
+    <Compile Include="Repositories\AdmCppForm\AdminCppRepository.cs" />
+    <Compile Include="Repositories\AdmCppForm\IAdminCppRepository.cs" />
+    <Compile Include="Repositories\HGVR\VoucherHotelDetailRepository.cs" />
+    <Compile Include="Repositories\HGVR\VoucherHotelFinanceRepository.cs" />
+    <Compile Include="Repositories\HGVR\VoucherHotelRepository.cs" />
+    <Compile Include="Repositories\HGVR\IVoucherHotelDetailRepository.cs" />
+    <Compile Include="Repositories\HGVR\IVoucherHotelFinanceRepository.cs" />
+    <Compile Include="Repositories\HGVR\IVoucherHotelRepository.cs" />
+    <Compile Include="Repositories\GMU\GmuRamClearRepository.cs" />
+    <Compile Include="Repositories\GMU\IGmuRamClearRepository.cs" />
+    <Compile Include="Repositories\IRF\IIRFRequestItemRepository.cs" />
+    <Compile Include="Repositories\IRF\IIRFVendorRepository.cs" />
+    <Compile Include="Repositories\IRF\IRFRequestItemRepository.cs" />
+    <Compile Include="Repositories\IRF\IRFVendorRepository.cs" />
+    <Compile Include="Repositories\ITCR\IRequestFormDataRepository.cs" />
+    <Compile Include="Repositories\ITCR\RequestFormDataRepository.cs" />
+    <Compile Include="Repositories\ITEIRQ\QuotationRepository.cs" />
+    <Compile Include="Repositories\ITEIRQ\EventInternetRepository.cs" />
+    <Compile Include="Repositories\ITEIRQ\IQuotationRepository.cs" />
+    <Compile Include="Repositories\ITEIRQ\IEventInternetRepository.cs" />
+    <Compile Include="Repositories\ITAD\ITADEmployeeRepository.cs" />
+    <Compile Include="Repositories\ITAD\IITADEmployeeRepository.cs" />
+    <Compile Include="Repositories\ATCF\AdditionalTimeWorkedRepository.cs" />
+    <Compile Include="Repositories\ATCF\IAdditionalTimeWorkedRepository.cs" />
+    <Compile Include="Repositories\ContractDraftRepository.cs" />
+    <Compile Include="Repositories\BCJ\IPurchaseOrderRepository.cs" />
+    <Compile Include="Repositories\BCJ\PurchaseOrderRepository.cs" />
+    <Compile Include="Repositories\DepartmentRight\DeptRightAssignmentRepository.cs" />
+    <Compile Include="Repositories\DepartmentRight\IDeptRightAssignmentRepository.cs" />
+    <Compile Include="Repositories\DocumentRepository.cs" />
+    <Compile Include="Repositories\Attachment\Implementation\TravelDetailRepository.cs" />
+    <Compile Include="Repositories\Attachment\ITravelDetailRepository.cs" />
+    <Compile Include="Repositories\Attachment\Implementation\RequisitionRepository .cs" />
+    <Compile Include="Repositories\Attachment\IRequisitionRepository.cs" />
+    <Compile Include="Repositories\Attachment\IUploadFileRepository.cs" />
+    <Compile Include="Repositories\Attachment\UploadFileRepository.cs" />
+    <Compile Include="Repositories\AvbJobDetailRepository.cs" />
+    <Compile Include="Repositories\EGMAttandance\ATDDetailTypeRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\MCNMachineIssueTypeRepository.cs" />
+    <Compile Include="Repositories\Email\EmailItemRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IOSHAEmployeeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IOSHAInformationRepository.cs" />
+    <Compile Include="Repositories\N2MWO\DepartmentChargableRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IDepartmentChargableRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IInformationRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IMaintenanceDepartmentRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IModeRepository.cs" />
+    <Compile Include="Repositories\N2MWO\InformationRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IRequestInformationRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IRequestTypeRepository.cs" />
+    <Compile Include="Repositories\N2MWO\IWorkTypeRepository.cs" />
+    <Compile Include="Repositories\N2MWO\MaintenanceDepartmentRepository.cs" />
+    <Compile Include="Repositories\N2MWO\ModeRepository.cs" />
+    <Compile Include="Repositories\N2MWO\RequestInformationRepository.cs" />
+    <Compile Include="Repositories\N2MWO\RequestTypeRepository.cs" />
+    <Compile Include="Repositories\N2MWO\WorkTypeRepository.cs" />
+    <Compile Include="Repositories\MWO\InformationRepository.cs" />
+    <Compile Include="Repositories\MWO\IInformationRepository.cs" />
+    <Compile Include="Repositories\OSHA\OSHAEmployeeRepository.cs" />
+    <Compile Include="Repositories\OSHA\OSHAInformationRepository.cs" />
+    <Compile Include="Repositories\JRAM\IRamClearRepository.cs" />
+    <Compile Include="Repositories\JRAM\RamClearRepository.cs" />
+    <Compile Include="Repositories\RMD\IWorksheet3Repository.cs" />
+    <Compile Include="Repositories\RMD\IWorksheet2Repository.cs" />
+    <Compile Include="Repositories\RMD\RiskAssessmentRepository.cs" />
+    <Compile Include="Repositories\RMD\IRiskAssessmentRepository.cs" />
+    <Compile Include="Repositories\RMD\IWorksheet1Repository.cs" />
+    <Compile Include="Repositories\RMD\Worksheet3Repository.cs" />
+    <Compile Include="Repositories\RMD\Worksheet2Repository.cs" />
+    <Compile Include="Repositories\RMD\Worksheet1Repository.cs" />
+    <Compile Include="Repositories\Security\AuthRepository.cs" />
+    <Compile Include="Repositories\TASCR\CourseRegistration.cs" />
+    <Compile Include="Repositories\TASCR\CourseEmployeeRepository.cs" />
+    <Compile Include="Repositories\TASCR\ICourseRegistration.cs" />
+    <Compile Include="Repositories\TASCR\ICourseEmployeeRepository.cs" />
+    <Compile Include="Repositories\EOMRequestInformationRepository.cs" />
+    <Compile Include="Repositories\AvbRequestItemRepository.cs" />
+    <Compile Include="Repositories\AvirRepository.cs" />
+    <Compile Include="Repositories\EOMRequestFilesRepository.cs" />
+    <Compile Include="Repositories\AVJBRequestFilesRepository.cs" />
+    <Compile Include="Repositories\BCJ\AttachmentRepository.cs" />
+    <Compile Include="Repositories\BCJ\AnalysisItemRepository.cs" />
+    <Compile Include="Repositories\BCJ\IAttachmentRepository.cs" />
+    <Compile Include="Repositories\BCJ\IAnalysisItemRepository.cs" />
+    <Compile Include="Repositories\BCJ\IProjectDetailRepository.cs" />
+    <Compile Include="Repositories\BCJ\IRequestItemRepository.cs" />
+    <Compile Include="Repositories\BCJ\ProjectDetailRepository.cs" />
+    <Compile Include="Repositories\BCJ\RequestItemRepository.cs" />
+    <Compile Include="Repositories\EGMAttandance\ATDAttachmentRepository.cs" />
+    <Compile Include="Repositories\EGMAttandance\ATDRepository.cs" />
+    <Compile Include="Repositories\EGMAttandance\IATDAttachmentRepository.cs" />
+    <Compile Include="Repositories\EGMAttandance\IATDRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\IMCNMachineAttachmentRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\IMCNMachineEmployeeRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\IMCNRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\MCNMachineAttachmentRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\MCNMachineEmployeeRepository.cs" />
+    <Compile Include="Repositories\EGMMachine\MCNRepository.cs" />
+    <Compile Include="Repositories\FAD\AssetControlDetailRepository.cs" />
+    <Compile Include="Repositories\FAD\AssetDisposalRepository.cs" />
+    <Compile Include="Repositories\FAD\AssetDisposalDetailRepository.cs" />
+    <Compile Include="Repositories\FAD\IAssetControlDetailRepository.cs" />
+    <Compile Include="Repositories\FAD\IAssetDisposalRepository.cs" />
+    <Compile Include="Repositories\FAD\IAssetDisposalDetailRepository.cs" />
+    <Compile Include="Repositories\EOMBP\BestPerformanceDetailRepository.cs" />
+    <Compile Include="Repositories\EOMBP\BestPerformance.cs" />
+    <Compile Include="Repositories\EOMBP\IBestPerformanceDetailRepository.cs" />
+    <Compile Include="Repositories\EOMBP\IBestPerformance.cs" />
+    <Compile Include="Repositories\IDocumentRepository.cs" />
+    <Compile Include="Repositories\Incident\ICDAttachmentRepository.cs" />
+    <Compile Include="Repositories\Incident\ICDIncidentEmployeRepository.cs" />
+    <Compile Include="Repositories\Incident\ICDRepository.cs" />
+    <Compile Include="Repositories\Incident\IICDAttachmentRepository.cs" />
+    <Compile Include="Repositories\Incident\IICDRepository.cs" />
+    <Compile Include="Repositories\Incident\IICDIncidentEmployeeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContractDraftRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEmailItemRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IActivityRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IFingerprintRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestDataRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAccessCardRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IWMRepository.cs" />
+    <Compile Include="Repositories\ITApp\IItappProjectApprovalRepository.cs" />
+    <Compile Include="Repositories\ITApp\IItappProjectDevRepository.cs" />
+    <Compile Include="Repositories\ITApp\IItappProjectInitRepository.cs" />
+    <Compile Include="Repositories\ITApp\ItappProjectApprovalRepository.cs" />
+    <Compile Include="Repositories\ITApp\ItappProjectDevRepository.cs" />
+    <Compile Include="Repositories\ITApp\ItappProjectInitRepository.cs" />
+    <Compile Include="Repositories\FAT\IAssetTransferDetailRepository.cs" />
+    <Compile Include="Repositories\FAT\IAssetTransferRepository.cs" />
+    <Compile Include="Repositories\FAT\AssetTransferDetailRepository.cs" />
+    <Compile Include="Repositories\FAT\AssetTransferRepository.cs" />
+    <Compile Include="Repositories\MTF\AttachmentRepository.cs" />
+    <Compile Include="Repositories\MTF\IAttachmentRepository.cs" />
+    <Compile Include="Repositories\MTF\UnfitToWorkRepository.cs" />
+    <Compile Include="Repositories\MTF\IUnfitToWorkRepository.cs" />
+    <Compile Include="Repositories\MTF\ITreatmentRepository.cs" />
+    <Compile Include="Repositories\MTF\IPrescriptionRepository.cs" />
+    <Compile Include="Repositories\MTF\TreatmentRepository.cs" />
+    <Compile Include="Repositories\MTF\PrescriptionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEOMRequestInformationRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEOMRequestFilesRepository.cs" />
+    <Compile Include="Repositories\RecipientRepository.cs" />
+    <Compile Include="Repositories\HumanResource\FlightDetailRepository.cs" />
+    <Compile Include="Repositories\HumanResource\DestinationRepository.cs" />
+    <Compile Include="Repositories\HumanResource\IFlightDetailRepository.cs" />
+    <Compile Include="Repositories\HumanResource\IDestinationRepository.cs" />
+    <Compile Include="Repositories\HumanResource\ITravelDetailRepository.cs" />
+    <Compile Include="Repositories\HumanResource\RequisitionRepository.cs" />
+    <Compile Include="Repositories\HumanResource\IRequisitionRepository.cs" />
+    <Compile Include="Repositories\HumanResource\TravelDetailRepository.cs" />
+    <Compile Include="Repositories\ILookupRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAvirRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRecipientRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEmailContentRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAvdrRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IJobRepository.cs" />
+    <Compile Include="Repositories\EmailContentRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\MWO\IMaintenanceDepartmentRepository.cs" />
+    <Compile Include="Repositories\ISimpleRepository.cs" />
+    <Compile Include="Repositories\RequestApp\IRequestApplicationRepository.cs" />
+    <Compile Include="Repositories\RequestApp\RequestApplicationRepository.cs" />
+    <Compile Include="Repositories\Reservation\ComplimentaryCheckItemRepository.cs" />
+    <Compile Include="Repositories\Reservation\ComplimentaryItemRepository.cs" />
+    <Compile Include="Repositories\Reservation\IComplimentaryCheckItemRepository.cs" />
+    <Compile Include="Repositories\Reservation\IComplimentaryItemRepository.cs" />
+    <Compile Include="Repositories\SimpleRepository.cs" />
+    <Compile Include="Repositories\FingerprintRepository.cs" />
+    <Compile Include="Repositories\AccessCardRepository.cs" />
+    <Compile Include="Repositories\ticket\IAgentRepository.cs" />
+    <Compile Include="Repositories\LookupRepository.cs" />
+    <Compile Include="Repositories\DepartmentRepositoy.cs" />
+    <Compile Include="Repositories\AttachementRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IActivityHistoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAttachementRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAvbJobDetailRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAvbRequestItemRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAVJBRequestFilesRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDepartmentRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IEmployeeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IItRequestFilesRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IMenuRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestHeaderRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestItemRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRequestUserRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IRoleRightRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITaskRepository.cs" />
+    <Compile Include="Repositories\ItRequestFilesRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\MWO\IDepartmentChargableRepository.cs" />
+    <Compile Include="Repositories\MWO\DepartmentChargableRepository.cs" />
+    <Compile Include="Repositories\MWO\IRequestInformationRepository.cs" />
+    <Compile Include="Repositories\MWO\RequestInformationRepository.cs" />
+    <Compile Include="Repositories\MWO\MaintenanceDepartmentRepository.cs" />
+    <Compile Include="Repositories\MWO\WorkTypeRepository.cs" />
+    <Compile Include="Repositories\MWO\IWorkTypeRepository.cs" />
+    <Compile Include="Repositories\MWO\RequestTypeRepository.cs" />
+    <Compile Include="Repositories\MWO\IRequestTypeRepository.cs" />
+    <Compile Include="Repositories\MWO\IModeRepository.cs" />
+    <Compile Include="Repositories\MWO\ModeRepository.cs" />
+    <Compile Include="Repositories\PBF\AttachmentRepository.cs" />
+    <Compile Include="Repositories\PBF\ISpecificationRepository.cs" />
+    <Compile Include="Repositories\PBF\SpecificationRepository.cs" />
+    <Compile Include="Repositories\PBF\ProjectBriefRepository.cs" />
+    <Compile Include="Repositories\PBF\IAttachmentRepository.cs" />
+    <Compile Include="Repositories\PBF\IProjectBriefRepository.cs" />
+    <Compile Include="Repositories\RequestHeaderRepository.cs" />
+    <Compile Include="Repositories\RequestItemRepository.cs" />
+    <Compile Include="Repositories\RequestUserRepository.cs" />
+    <Compile Include="Repositories\Attachment\Implementation\ComplimentaryRepository.cs" />
+    <Compile Include="Repositories\Reservation\AttachmentRepository.cs" />
+    <Compile Include="Repositories\Attachment\IComplimentaryRepository.cs" />
+    <Compile Include="Repositories\Reservation\ComplimentaryRepository.cs" />
+    <Compile Include="Repositories\Reservation\GuestRepository.cs" />
+    <Compile Include="Repositories\Reservation\IAttachmentRepository.cs" />
+    <Compile Include="Repositories\Reservation\IComplimentaryRepository.cs" />
+    <Compile Include="Repositories\Reservation\IBookingRepository.cs" />
+    <Compile Include="Repositories\Reservation\BookingRepository.cs" />
+    <Compile Include="Repositories\Reservation\IGuestRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\RoleRightRepository.cs" />
+    <Compile Include="Repositories\JobRepository.cs" />
+    <Compile Include="Repositories\StoreSeedData.cs" />
+    <Compile Include="Repositories\AvdrRepository.cs" />
+    <Compile Include="Repositories\System\ITransactionHistoryRepository.cs" />
+    <Compile Include="Repositories\System\TransactionHistoryRepository.cs" />
+    <Compile Include="Repositories\TaskRepository.cs" />
+    <Compile Include="Repositories\ticket\AgentRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketActivityRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketAgentRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketAssignmentRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketGroupPolicyReportAssignRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketPriorityRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketCategoryRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketChangeStatusActRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketDepartmentRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketDeptRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketFileUploadRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketGroupPolicyReplository.cs" />
+    <Compile Include="Repositories\ticket\ITicketItemRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketLookupRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketRoutingRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketingRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketSlaMappingRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketSla.cs" />
+    <Compile Include="Repositories\ticket\ITicketSubCategoryRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketGroupPolicyTeamAssignRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketTeamAgentAssignRepository.cs" />
+    <Compile Include="Repositories\ticket\ITicketTeamRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketActivityRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketAgentRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketAssignmentRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketGroupPolicyReportAssignRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketPriorityRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketCategoryRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketChangeStatusActRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketDepartmentRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketDeptRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketFileUploadRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketGroupPolicyRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketItemRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketLookupRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketRoutingRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketingRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketSlaMappingRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketSlaRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketSubCategoryRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketGroupPolicyTeamAssignRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketTeamAgentAssignRepository.cs" />
+    <Compile Include="Repositories\ticket\TicketTeamRepository.cs" />
+    <Compile Include="Repositories\Admsr\IAdmsrInformationRepository.cs" />
+    <Compile Include="Repositories\Admsr\AdmsrInformationRepository.cs" />
+    <Compile Include="Repositories\Admsr\IAdmsrCompanyRepository.cs" />
+    <Compile Include="Repositories\Admsr\AdmsrCompanyRepository.cs" />
+    <Compile Include="Repositories\VAF\IInformationRepository.cs" />
+    <Compile Include="Repositories\VAF\InformationRepository.cs" />
+    <Compile Include="Repositories\VAF\IOutlineRepository.cs" />
+    <Compile Include="Repositories\VAF\OutlineRepository.cs" />
+    <Compile Include="Repositories\VoucherRequest\RequestDataRepository.cs" />
+    <Compile Include="Repositories\WMRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Workflow.Core\Workflow.Core.csproj">
+      <Project>{c885b24f-052b-465f-ba0c-18db3db56616}</Project>
+      <Name>Workflow.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Domain\Workflow.Domain.csproj">
+      <Project>{a2841867-8d8a-419a-80bb-d3dee9864a3b}</Project>
+      <Name>Workflow.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Workflow.Framework\Workflow.Framework.csproj">
+      <Project>{e7c78513-504d-4834-802f-3b6c9b17c2a9}</Project>
+      <Name>Workflow.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

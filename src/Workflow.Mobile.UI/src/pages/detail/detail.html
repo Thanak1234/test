@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{folio}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-fab right bottom [hidden]="!canTakeAction">
+        <button ion-fab color="gold"><ion-icon name="logo-buffer"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab [hidden]="item.Actions ? item.Actions.length == 0: false" (click)="onActionClick($event)"><ion-icon name="cog"></ion-icon></button>
+            <button ion-fab (click)="onMoreClick($event)"><ion-icon name="settings"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+    <iframe (load)="onLoaded()" id="frame" [src]="formUrl"></iframe>
+</ion-content>
